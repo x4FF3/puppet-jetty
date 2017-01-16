@@ -11,9 +11,9 @@ class jetty(
   String                    $group,
   ) {
 
-  class { '::jetty::install' } ->
-  class { '::jetty::config'  } ~>
-  class { '::jetty::service' } ->
+  class { '::jetty::install': } ->
+  class { '::jetty::config':  } ~>
+  class { '::jetty::service': } ->
   Class['::jetty']
 }
 
