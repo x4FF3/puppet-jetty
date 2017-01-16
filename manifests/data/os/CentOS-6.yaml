@@ -1,0 +1,2 @@
+---
+  jetty::default_config_file: '/etc/sysconfig/jetty'

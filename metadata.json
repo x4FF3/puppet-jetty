@@ -1,0 +1,25 @@
+{
+  "name": "4iq-jetty",
+  "version": "0.0.1",
+  "author": "J.Juarez",
+  "license": "MIT",
+  "summary": "A module to install a basic Jetty Web Server",
+  "source": "https://github.com/jjuarez/puppet-jetty.git",
+  "project_page": "https://github.com/jjuarez/puppet-jetty",
+  "issues_url": "https://github.com/jjuarez/puppet-jetty/issues",
+  "tags": ["jetty", "webserver"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6.0",
+        "7.0"
+      ]
+    }
+  ],
+  "data_provider": "hiera",
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" }
+    { "name": "puppetlabs/archive", "version_requirement": ">=1.2.0" }
+  ]
+}
