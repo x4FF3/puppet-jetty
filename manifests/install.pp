@@ -36,7 +36,7 @@ class jetty::install inherits jetty {
     extract         => true,
     extract_path    => $jetty::home,
     cleanup         => true,
-    creates         => $jetty::home/jetty-installed,
+    creates         => "${jetty::home}/jetty-installed",
     user            => $jetty::user,
     group           => $jetty::group,
     require         => User[$jetty::user],
