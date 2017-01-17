@@ -7,7 +7,7 @@ class jetty::config inherits jetty {
     owner   => $jetty::user,
     group   => $jetty::group,
     mode    => '0760',
-    content => template('jetty/jetty-defaults')
+    content => template('jetty/jetty-defaults.erb')
   }
 }
 
