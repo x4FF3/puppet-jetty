@@ -8,11 +8,11 @@ class jetty::install inherits jetty {
       managehome => true,
       system     => true,
       git        => $jetty::group,
-    }
+    })
 
     ensure_resource('group', $jetty::group, {
       ensure => present,
-    }
+    })
   }
 
   include '::archive'
@@ -32,7 +32,7 @@ class jetty::install inherits jetty {
   }
 
   file { "${jetty::home}/jetty":
-    ensure => "${jetty::home}/jetty-distribution-${version}",
+    ensure => "${jetty::home}/jetty-distribution-${jetty::version}",
   } ->
 
   file { '/var/log/jetty':
@@ -40,7 +40,7 @@ class jetty::install inherits jetty {
   } ->
 
   file { '/etc/init.d/jetty':
-    ensure  => "${home}/jetty-distribution-${version}/bin/jetty.sh",
+    ensure  => "${jetty::home}/jetty-distribution-${jetty::version}/bin/jetty.sh",
     require => File['/etc/default/jetty']
   }
 }
