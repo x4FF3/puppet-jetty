@@ -1,4 +1,5 @@
 ---
+  jetty::http_port: 8081
   jetty::version: '9.2.20.v20161216'
   jetty::archive_type: 'tar.gz'
   jetty::home: '/opt'
@@ -7,5 +8,4 @@
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
-  jetty::args: 'jetty.http.port=8081'
 
