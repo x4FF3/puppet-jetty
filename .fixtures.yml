@@ -1,3 +1,6 @@
 fixtures:
+  repositories:
+    stdlib: git://github.com/puppetlabs/puppetlabs-stdlib.git
+    archive: git://github.com/voxpupuli/puppet-archive.git
   symlinks:
     jetty: "#{source_dir}"

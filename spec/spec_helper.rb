@@ -5,6 +5,7 @@ Puppet::Util::Log.newdestination(:console)
 
 RSpec.configure do |c|
   c.default_facts = {
-    :operatingsystem => 'centos',
+    :operatingsystem => 'CentOS',
+    :osfamily        => 'RedHat',
   }
 end
