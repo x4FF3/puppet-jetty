@@ -21,17 +21,25 @@ class jetty::install inherits jetty {
   $download_file_name = "${download_directory}.${jetty::archive_type}"
   $download_url       = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/${download_file_name}"
 
+  file { "${jetty::home}/${download_directory}":
+    ensure => directory,
+    owner  => $jetty::user,
+    group  => $jetty::group,
+    mode   => '0754',
+  } ->
   archive { "/tmp/${download_file_name}":
-    ensure        => present,
-    source        => $download_url,
-    checksum_url  => "$download_url.sha1"
-    extract       => true,
-    extract_path  => $jetty::home,
-    cleanup       => true,
-    creates       => $jetty::home/jetty-installed,
-    user          => $jetty::user,
-    group         => $jetty::group,
-    require       => User[$jetty::user],
+    ensure          => present,
+    source          => $download_url,
+    checksum_url    => "${download_url}.sha1"
+    checksum_verify => true,
+    allow_insecure  => true,
+    extract         => true,
+    extract_path    => $jetty::home,
+    cleanup         => true,
+    creates         => $jetty::home/jetty-installed,
+    user            => $jetty::user,
+    group           => $jetty::group,
+    require         => User[$jetty::user],
   }
 
   file { "${jetty::home}/jetty":
