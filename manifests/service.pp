@@ -3,7 +3,7 @@
 class jetty::service inherits jetty {
 
   service { 'jetty':
-    ensure     => $jetty::ensure,
+    ensure     => $jetty::service_ensure,
     hasstatus  => false,
     hasrestart => true,
   }
