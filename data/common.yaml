@@ -1,5 +1,5 @@
 ---
-  jetty::version: '9.2.20v20161216'
+  jetty::version: '9.2.20.v20161216'
   jetty::checksum: ''
   jetty::checksum_type: 'sha1'
   jetty::home: '/opt'
