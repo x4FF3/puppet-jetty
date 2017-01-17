@@ -7,7 +7,7 @@ class jetty::install inherits jetty {
     ensure_resource('user', $jetty::user, {
       managehome => true,
       system     => true,
-      git        => $jetty::group,
+      gid        => $jetty::group,
     })
 
     ensure_resource('group', $jetty::group, {
