@@ -17,18 +17,18 @@ class jetty::install inherits jetty {
 
   include '::archive'
 
-  $download_file_name = "jetty-distribution-${jetty::version}.${jetty::archive_type}"
+  $download_directory = "jetty-distribution-${jetty::version}"
+  $download_file_name = "${download_directory}.${jetty::archive_type}"
   $download_url       = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/${download_file_name}"
 
-  archive { $download_file_name:
+  archive { "/tmp/${download_file_name}":
     ensure        => present,
-    path          => "/tmp/$download_file_name",
     source        => $download_url,
     checksum      => $jetty::checksum,
     checksum_type => $jetty::checksum_type,
     extract       => true,
     extract_path  => $jetty::home,
-    cleanup       => false,
+    cleanup       => true,
     user          => $jetty::user,
     group         => $jetty::group,
     require       => User[$jetty::user],
@@ -36,15 +36,15 @@ class jetty::install inherits jetty {
 
   file { "${jetty::home}/jetty":
     ensure => link,
-    target => "${jetty::home}/jetty-distribution-${jetty::version}",
+    target => "${jetty::home}/${download_directory}",
   } ->
-
   file { '/var/log/jetty':
-    ensure => "${jetty::home}/jetty/logs",
+    ensure => link,
+    target => "${jetty::home}/jetty/logs",
   } ->
-
   file { '/etc/init.d/jetty':
-    ensure  => "${jetty::home}/jetty-distribution-${jetty::version}/bin/jetty.sh",
+    ensure => link,
+    target => "${jetty::home}/jetty/bin/jetty.sh",
   }
 }
 
