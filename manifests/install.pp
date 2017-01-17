@@ -24,11 +24,11 @@ class jetty::install inherits jetty {
   archive { "/tmp/${download_file_name}":
     ensure        => present,
     source        => $download_url,
-    checksum      => $jetty::checksum,
-    checksum_type => $jetty::checksum_type,
+    checksum_url  => "$download_url.sha1"
     extract       => true,
     extract_path  => $jetty::home,
     cleanup       => true,
+    creates       => $jetty::home/jetty-installed,
     user          => $jetty::user,
     group         => $jetty::group,
     require       => User[$jetty::user],
