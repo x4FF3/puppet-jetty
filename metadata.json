@@ -1,16 +1,16 @@
 {
   "name": "puppet-jetty",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "J.Juarez",
   "license": "MIT",
   "summary": "A module to install a basic Jetty Web Server hihgly inspired on maestrodev/jetty",
-  "source": "https://github.com/jjuarez/puppet-jetty.git",
-  "project_page": "https://github.com/jjuarez/puppet-jetty",
-  "issues_url": "https://github.com/jjuarez/puppet-jetty/issues",
+  "source": "https://bitbucket.org/4iqdevops:/puppet-jetty",
+  "project_page": "https://github.com/4iqdevops/puppet-jetty",
+  "issues_url": "https://github.com/4iqdevops/puppet-jetty/issues",
   "tags": ["jetty", "webserver"],
   "operatingsystem_support": [
     {
-      "operatingsystem": "RedHat",
+      "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6.0"
       ]
