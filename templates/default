@@ -1,2 +1,0 @@
-JETTY_HOME="<%= @home %>/jetty"
-JETTY_USER="<%= @user %>"

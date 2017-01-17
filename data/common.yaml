@@ -1,2 +1,10 @@
 ---
-
+  jetty::version: '9.2.20v20161216'
+  jetty::checksum: ''
+  jetty::checksum_type: 'sha1'
+  jetty::home: '/opt'
+  jetty::service_ensure: 'running'
+  jetty::manage_user: true
+  jetty::user: 'jetty'
+  jetty::group: 'servers'
+  jetty::mirror: 'http://central.maven.org/maven2/'

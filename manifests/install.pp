@@ -17,16 +17,18 @@ class jetty::install inherits jetty {
 
   include '::archive'
 
+  $download_url = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution-${jetty::version}/jetty-distribution-${jetty::version}.tar.gz"
+
   archive { 'jetty_download':
     ensure        => present,
-    source        => "http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-distribution/${jetty::version}/jetty-distribution-${jetty::version}.tar.gz",
+    source        => $download_url,
     checksum      => $jetty::checksum,
     checksum_type => $jetty::checksum_type,
     cleanup       => false,
-    user          => $solr::user,
-    group         => $solr::group,
+    user          => $jetty::user,
+    group         => $jetty::group,
     notify        => Service['jetty'],
-    require       => [File[$solr::home],User[$solr::user]],
+    require       => [File[$jetty::home],User[$jetty::user]],
   }
 
   file { "${jetty::home}/jetty":
@@ -37,18 +39,9 @@ class jetty::install inherits jetty {
     ensure => "${jetty::home}/jetty/logs",
   } ->
 
-  $jetty_default_config_file = ? $facts['os']['name'] : {
-    'RedHat', 'CentOS' => '/etc/sysconfig/jetty',
-    'Debian', 'Ubuntu' => '/etc/default/jetty',
-    default            => '/etc/default/jetty'
-  }
-
-  file { $jetty_default_config_file:
-    content => template('jetty/defaults'),
-  } ->
-
   file { '/etc/init.d/jetty':
-    ensure => "${home}/jetty-distribution-${version}/bin/jetty.sh",
+    ensure  => "${home}/jetty-distribution-${version}/bin/jetty.sh",
+    require => File['/etc/default/jetty']
   }
 }
 

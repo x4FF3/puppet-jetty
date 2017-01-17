@@ -2,18 +2,22 @@
 # = class: jetty - This class helps to install a Jetty Web Server
 class jetty(
   String                    $version,
+  Stdlib::Httpurl           $mirror,
   String                    $checksum,
   Enum['md5', 'sha1']       $checksum_type,
   Stdlib::Absolutepath      $home,
-  Enum['running', 'stoped'] $ensure,
+  Enum['running', 'stoped'] $service_ensure,
   Boolean                   $manage_user,
   String                    $user,
   String                    $group,
   ) {
 
-  class { '::jetty::install': } ->
-  class { '::jetty::config':  } ~>
-  class { '::jetty::service': } ->
-  Class['::jetty']
+  contain jetty::install
+  contain jetty::config
+  contain jetty::service
+
+  Class['::jetty::install'] ->
+  Class['::jetty::config'] ~>
+  Class['::jetty::service']
 }
 
