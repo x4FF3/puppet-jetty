@@ -1,5 +1,5 @@
 JETTY_HOME="<%= $jetty::home %>/jetty"
 JETTY_USER="<%= $jetty::user %>"
-<% if $jetty::arguments { -%>
+<% if $jetty::args { -%>
 JETTY_ARGS=<%= $jetty::args %>
 <% } -%>

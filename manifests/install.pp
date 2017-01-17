@@ -28,7 +28,7 @@ class jetty::install inherits jetty {
     user          => $jetty::user,
     group         => $jetty::group,
     notify        => Service['jetty'],
-    require       => [File[$jetty::home],User[$jetty::user]],
+    require       => User[$jetty::user],
   }
 
   file { "${jetty::home}/jetty":
