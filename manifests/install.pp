@@ -42,7 +42,6 @@ class jetty::install inherits jetty {
 
   file { '/etc/init.d/jetty':
     ensure  => "${jetty::home}/jetty-distribution-${jetty::version}/bin/jetty.sh",
-    require => File['/etc/default/jetty']
   }
 }
 
