@@ -28,17 +28,18 @@ class jetty::install inherits jetty {
     mode   => '0754',
   } ->
   archive { "/tmp/${download_file_name}":
-    ensure         => present,
-    source         => $download_url,
-    checksum_url   => "${download_url}.sha1"
-    allow_insecure => true,
-    extract        => true,
-    extract_path   => $jetty::home,
-    cleanup        => true,
-    creates        => $jetty::home/jetty-installed,
-    user           => $jetty::user,
-    group          => $jetty::group,
-    require        => User[$jetty::user],
+    ensure          => present,
+    source          => $download_url,
+    checksum_url    => "${download_url}.sha1",
+    checksum_verify => true,
+    allow_insecure  => true,
+    extract         => true,
+    extract_path    => $jetty::home,
+    cleanup         => true,
+    creates         => $jetty::home/jetty-installed,
+    user            => $jetty::user,
+    group           => $jetty::group,
+    require         => User[$jetty::user],
   }
 
   file { "${jetty::home}/jetty":
