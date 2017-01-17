@@ -2,6 +2,7 @@
   jetty::version: '9.2.20.v20161216'
   jetty::checksum: '97456a98d5c6488efbbf368c8c32da52672fa52e'
   jetty::checksum_type: 'sha1'
+  jetty::archive_type: 'tar.gz'
   jetty::home: '/opt'
   jetty::service_ensure: 'running'
   jetty::manage_user: true

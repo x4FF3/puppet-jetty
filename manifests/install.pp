@@ -17,14 +17,17 @@ class jetty::install inherits jetty {
 
   include '::archive'
 
-  $download_url = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/jetty-distribution-${jetty::version}.tar.gz"
+  $download_directory = "jetty-distribution-${jetty::version}"
+  $download_file_name = "${download_directory}.${jetty::archive_type}"
+  $download_url       = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/${download_file_name}"
 
   archive { 'Jetty download':
     ensure        => present,
-    path          => "${jetty::home}/jetty-distribution-${jetty::version}",
+    path          => "${jetty::home}/${download_directory}",
     source        => $download_url,
     checksum      => $jetty::checksum,
     checksum_type => $jetty::checksum_type,
+    extract       => true,
     cleanup       => false,
     user          => $jetty::user,
     group         => $jetty::group,

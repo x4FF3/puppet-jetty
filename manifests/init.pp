@@ -5,6 +5,7 @@ class jetty(
   Stdlib::Httpurl           $mirror,
   String                    $checksum,
   Enum['md5', 'sha1']       $checksum_type,
+  Enum['tar.gz', 'zip']     $archive_type,
   Stdlib::Absolutepath      $home,
   Optional[String]          $args,
   Enum['running', 'stoped'] $service_ensure,
