@@ -6,7 +6,6 @@ class jetty(
   Stdlib::Httpurl           $mirror,
   Enum['tar.gz', 'zip']     $archive_type,
   Stdlib::Absolutepath      $home,
-  Optional[String]          $args,
   Enum['running', 'stoped'] $service_ensure,
   Boolean                   $manage_user,
   String                    $user,
