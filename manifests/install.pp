@@ -21,19 +21,19 @@ class jetty::install inherits jetty {
 
   archive { 'Jetty download':
     ensure        => present,
-    path          => "/tmp/jetty-distribution-${jetty::version}.tar.gz",
+    path          => "${jetty::home}/jetty-distribution-${jetty::version}",
     source        => $download_url,
     checksum      => $jetty::checksum,
     checksum_type => $jetty::checksum_type,
     cleanup       => false,
     user          => $jetty::user,
     group         => $jetty::group,
-    notify        => Service['jetty'],
     require       => User[$jetty::user],
   }
 
   file { "${jetty::home}/jetty":
-    ensure => "${jetty::home}/jetty-distribution-${jetty::version}",
+    ensure => link,
+    target => "${jetty::home}/jetty-distribution-${jetty::version}",
   } ->
 
   file { '/var/log/jetty':
