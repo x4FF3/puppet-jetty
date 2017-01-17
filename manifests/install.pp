@@ -20,8 +20,9 @@ class jetty::install inherits jetty {
   $download_file_name = "jetty-distribution-${jetty::version}.${jetty::archive_type}"
   $download_url       = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/${download_file_name}"
 
-  archive { 'Jetty download':
+  archive { $download_file_name:
     ensure        => present,
+    path          => "/tmp/$download_file_name",
     source        => $download_url,
     checksum      => $jetty::checksum,
     checksum_type => $jetty::checksum_type,
