@@ -1,6 +1,6 @@
 {
   "name": "puppet-jetty",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "J.Juarez",
   "license": "MIT",
   "summary": "A module to install a basic Jetty Web Server hihgly inspired on maestrodev/jetty",
@@ -19,6 +19,6 @@
   "data_provider": "hiera",
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
-    { "name": "puppetlabs/archive", "version_requirement": ">=1.2.0 <2.0.0" }
+    { "name": "puppet/archive", "version_requirement": ">=1.2.0 <2.0.0" }
   ]
 }
