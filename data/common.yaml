@@ -8,4 +8,4 @@
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2/'
-# jetty::arguments: 'jetty.port=8080 jetty.spdy.port=8443 jetty.secure.port=443'
+  jetty::args: ''

@@ -6,7 +6,7 @@ class jetty(
   String                    $checksum,
   Enum['md5', 'sha1']       $checksum_type,
   Stdlib::Absolutepath      $home,
-  Optional[String]          $arguments,
+  Optional[String]          $args,
   Enum['running', 'stoped'] $service_ensure,
   Boolean                   $manage_user,
   String                    $user,
