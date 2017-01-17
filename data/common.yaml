@@ -9,4 +9,4 @@
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
-  jetty::args: ''
+  jetty::args: '-Djetty.http.port=8081'
