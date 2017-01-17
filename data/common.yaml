@@ -7,5 +7,5 @@
   jetty::manage_user: true
   jetty::user: 'jetty'
   jetty::group: 'servers'
-  jetty::mirror: 'http://central.maven.org/maven2/'
+  jetty::mirror: 'http://central.maven.org/maven2'
   jetty::args: ''

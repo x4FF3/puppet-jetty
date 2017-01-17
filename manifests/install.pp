@@ -17,7 +17,7 @@ class jetty::install inherits jetty {
 
   include '::archive'
 
-  $download_url = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution-${jetty::version}/jetty-distribution-${jetty::version}.tar.gz"
+  $download_url = "${jetty::mirror}/org/eclipse/jetty/jetty-distribution/${jetty::version}/jetty-distribution-${jetty::version}.tar.gz"
 
   archive { 'Jetty download':
     ensure        => present,
