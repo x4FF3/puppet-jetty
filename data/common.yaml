@@ -8,4 +8,4 @@
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
-
+  jetty::java_options: '-Xms512M -Xmx512M -Dfile.encoding=UTF8 -Djava.awt.headless=true'
