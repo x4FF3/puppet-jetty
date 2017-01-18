@@ -9,5 +9,13 @@ class jetty::config inherits jetty {
     mode    => '0760',
     content => epp('jetty/jetty-defaults.epp')
   }
+
+  file { "${jetty::base}/start.ini":
+    ensure  => present,
+    owner   => $jetty::user,
+    group   => $jetty::group,
+    mode    => '0750',
+    content => epp('jetty/start.ini.epp')
+  }
 }
 
