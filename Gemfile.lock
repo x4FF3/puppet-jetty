@@ -78,7 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   metadata-json-lint
-  puppet
+  puppet (>= 4.0.0)
   puppet-blacksmith
   puppet-lint
   puppetlabs_spec_helper
