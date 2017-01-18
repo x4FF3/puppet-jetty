@@ -2,10 +2,10 @@
 # = class: jetty::service - This class manages the Jetty service
 class jetty::service inherits jetty {
 
-  service { 'jetty':
+  service { 'Jetty Service':
     ensure     => $jetty::service_ensure,
-    hasstatus  => false,
+    name       => 'jetty',
+    hasstatus  => true,
     hasrestart => true,
   }
 }
-
