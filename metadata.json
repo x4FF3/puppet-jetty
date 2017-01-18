@@ -3,10 +3,10 @@
   "version": "0.0.8",
   "author": "J.Juarez",
   "license": "MIT",
-  "summary": "A module to install a basic Jetty Web Server hihgly inspired on maestrodev/jetty",
-  "source": "https://bitbucket.org/4iqdevops:/puppet-jetty",
-  "project_page": "https://bitbucket.org/4iqdevops/puppet-jetty",
-  "issues_url": "https://bitbucket.org/4iqdevops/puppet-jetty/issues",
+  "summary": "A puppet 4 module to install a basic Jetty Web Server hihgly inspired on maestrodev/jetty",
+  "source": "https://github.com/jjuarez/puppet-jetty",
+  "project_page": "https://github.com/jjuarez/puppet-jetty",
+  "issues_url": "https://github.com/jjuarez/puppet-jetty/issues",
   "tags": [
     "jetty",
     "webserver"
