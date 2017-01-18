@@ -23,20 +23,6 @@ class jetty::install inherits jetty {
     })
   }
 
-  file { '/etc/init.d/jetty':
-    ensure => link,
-    target => "${jetty_home}/bin/jetty.sh",
-  } ->
-  file { '/var/log/jetty':
-    ensure => link,
-    target => "${jetty_home}/logs",
-  } ->
-  file { "${jetty_home}/tmp":
-    ensure => directory,
-    owner  => $jetty::user,
-    group  => $jetty::group,
-    mode   => '0775',
-  } ->
   file { $jetty_home:
     ensure => link,
     target => "${jetty::root}/${download_directory}",
@@ -60,6 +46,21 @@ class jetty::install inherits jetty {
     user            => $jetty::user,
     group           => $jetty::group,
     require         => User[$jetty::user],
+  }
+
+  file { '/etc/init.d/jetty':
+    ensure => link,
+    target => "${jetty_home}/bin/jetty.sh",
+  } ->
+  file { '/var/log/jetty':
+    ensure => link,
+    target => "${jetty_home}/logs",
+  } ->
+  file { "${jetty_home}/tmp":
+    ensure => directory,
+    owner  => $jetty::user,
+    group  => $jetty::group,
+    mode   => '0775',
   }
 
   # Jetty Base setup
