@@ -96,6 +96,7 @@ describe 'jetty' do
         .with_content(/^JETTY_HOME="\/opt\/jetty"$/) \
         .with_content(/^JETTY_BASE="\/opt\/web\/base"$/) \
         .with_content(/^JETTY_USER="jettyuser"$/) \
+        .with_content(/^JETTY_SHELL="\/bin\/sh"$/) \
         .with_content(/^TMPDIR="\/opt\/jetty\/tmp"$/) \
         .with_content(/^JETTY_ARGS="jetty.port=8081"$/)
     end
