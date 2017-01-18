@@ -10,3 +10,5 @@
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
   jetty::archive_type: 'tar.gz'
+  jetty::java:
+  jetty::java_options:
