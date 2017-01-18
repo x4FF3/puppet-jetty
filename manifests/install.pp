@@ -64,7 +64,7 @@ class jetty::install inherits jetty {
   }
 
   # Jetty Base setup
-  file { "${jetty::root}/web/base/webapps":
+  file { "${jetty::root}/web":
     ensure => directory,
     owner  => $jetty::user,
     group  => $jetty::group,
@@ -76,7 +76,7 @@ class jetty::install inherits jetty {
     group  => $jetty::group,
     mode   => '0754',
   } ->
-  file { "${jetty::root}/web":
+  file { "${jetty::root}/web/base/webapps":
     ensure => directory,
     owner  => $jetty::user,
     group  => $jetty::group,
