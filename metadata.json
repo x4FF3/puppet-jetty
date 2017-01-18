@@ -1,6 +1,6 @@
 {
   "name": "jjuarez-jetty",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author": "J.Juarez",
   "license": "MIT",
   "summary": "A puppet 4 module to install a basic Jetty Web Server hihgly inspired on maestrodev/jetty",
