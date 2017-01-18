@@ -14,7 +14,7 @@ A module to install Jetty and configure the service. This module has been highly
     class { '::jetty':
       root         => '/opt',
       base         => '/opt/web/base',
-      tmpdir       => '/opt/jetty/tmp,
+      tmpdir       => '/opt/jetty/tmp',
       version      => '9.2.20.v20161216',
       http_port    => 8080,
       manage_user  => true,
@@ -32,7 +32,7 @@ This is a puppet 4 module, the recomendation is to use the binding capabilities 
     ---
       jetty::root: '/opt',
       jetty::base: '/opt/web/base',
-      jetty::tmpdir: '/opt/jetty/tmp,
+      jetty::tmpdir: '/opt/jetty/tmp',
       jetty::version: '9.2.20.v20161216',
       jetty::http_port: 8080,
       jetty::manage_user: true,
