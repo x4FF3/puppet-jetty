@@ -1,12 +1,12 @@
 ---
+  jetty::root: '/opt'
+  jetty::base: '/opt/web/base'
+  jetty::tmpdir: '/opt/jetty/tmp'
   jetty::version: '9.2.20.v20161216'
   jetty::http_port: 8081
-  jetty::archive_type: 'tar.gz'
-  jetty::home: '/opt'
   jetty::service_ensure: 'running'
   jetty::manage_user: true
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
-  jetty::java_options: '-Xms128M -Xmx256M -Dfile.encoding=UTF8 -Djava.awt.headless=true'
-
+  jetty::archive_type: 'tar.gz'
