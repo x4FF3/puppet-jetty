@@ -2,6 +2,7 @@
 # = class: jetty - This class helps to install a Jetty Web Server
 class jetty(
   String                    $version,
+  String                    $java_options,
   Integer                   $http_port,
   Stdlib::Httpurl           $mirror,
   Enum['tar.gz', 'zip']     $archive_type,
