@@ -26,11 +26,40 @@ describe 'jetty' do
       }
     end
 
-    it { should compile.with_all_deps }
-    it { should contain_user('jettyuser').with_gid('jettygroup') }
-    it { should contain_file('/opt/jetty-distribution-9.2.20.v20161216').with_ensure('directory') }
-    it { should contain_file('/opt/jetty').with_ensure('link').with_target('/opt/jetty-distribution-9.2.20.v20161216') }
-    it { should contain_service('jetty').with_ensure('running') }
+    it { is_expected.to compile.with_all_deps }
+
+    it do
+      is_expected.to contain_user('jettyuser').with({
+        'gid' =>'jettygroup'
+      })
+    end
+
+    it do
+      is_expected.to contain_file('/opt/jetty-distribution-9.2.20.v20161216').with({
+        'ensure' =>'directory',
+        'owner'  =>'jettyuser',
+        'group'  =>'jettygroup',
+      })
+    end
+
+    it do
+      is_expected.to contain_file('/opt/jetty').with({
+        'ensure' =>'link',
+        'target' =>'/opt/jetty-distribution-9.2.20.v20161216',
+      })
+    end
+
+    it do is_expected.to contain_file('/etc/default/jetty').with({
+      'ensure' =>'present',
+      'owner'  =>'jettyuser',
+      'group'  =>'jettygroup',
+      })
+    end
+
+    it do is_expected.to contain_service('jetty').with({
+      'ensure' =>'running',
+    })
+    end
   end
 end
 
