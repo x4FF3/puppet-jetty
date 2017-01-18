@@ -10,5 +10,5 @@ CLOBBER.include('.tmp')
 # Puppet list permissive with this kind of Taliban rules
 PuppetLint.configuration.send("disable_80chars")
 
-task :default => [:clean, :spec]
+task :default => [:clean, :spec, :lint]
 
