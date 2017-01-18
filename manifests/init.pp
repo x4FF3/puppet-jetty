@@ -1,16 +1,18 @@
 ##
 # = class: jetty - This class helps to install a Jetty Web Server
 class jetty(
+  Stdlib::Absolutepath      $root,
+  Stdlib::Absolutepath      $base,
   String                    $version,
-  String                    $java_options,
   Integer                   $http_port,
-  Stdlib::Httpurl           $mirror,
-  Enum['tar.gz', 'zip']     $archive_type,
-  Stdlib::Absolutepath      $home,
   Enum['running', 'stoped'] $service_ensure,
   Boolean                   $manage_user,
   String                    $user,
   String                    $group,
+  Stdlib::Httpurl           $mirror,
+  Enum['tar.gz', 'zip']     $archive_type,
+  Optional[String]          $java,
+  Optional[String]          $java_options,
   ) {
 
   contain jetty::install
@@ -21,4 +23,3 @@ class jetty(
   Class['::jetty::config'] ~>
   Class['::jetty::service']
 }
-
