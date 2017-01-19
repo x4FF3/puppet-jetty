@@ -7,12 +7,15 @@ A module to install Jetty and configure the service. This module has been highly
 
 ### Minimal setup
 
+```puppet
   class { '::jetty':
     version => '9.2.20.v20161216',
   }
+```
 
 ### More sofisticated setup
 
+```puppet
   class { '::jetty':
     root            => '/opt',
     base            => '/opt/web/base',
@@ -28,10 +31,12 @@ A module to install Jetty and configure the service. This module has been highly
     java            => '/usr/java/jdk1.8.0_51/bin/java',
     java_options    => '-Xms128M -Xmx1G -Djvm_key=jvm_value',
   }
+```
 
 This is a puppet 4 module, the recomendation is to use the binding capabilities of this puppet version. First configure in your hiera hierarchy the options that you want to setup
 
-  ---
+```yaml
+---
     jetty::root: '/opt'
     jetty::base: '/opt/web/base'
     jetty::version: '9.2.20.v20161216'
@@ -45,17 +50,20 @@ This is a puppet 4 module, the recomendation is to use the binding capabilities 
     jetty_arguments: 'jetty.some_option=some_value'
     jetty::java: '/usr/java/jdk1.8.0_51/bin/java'
     jetty::java_options: '-Xms128M -Xmx1G -Djvm_key=jvm_value
+```
 
-Then include the class in your profile class
+Then you only need to include the class in your profile class
 
-  include '::jetty'
-
+```puppet
+  include '::jetty'
+```
 
 ### For a complete customization for the start.ini config file.
 
 You must include an additional parameter in the manifest called configuration, which is an optional Hash, in the form:
 
-  ---
+```yaml
+  ---
     jetty::root: '/opt',
     jetty::base: '/opt/web/base'
     jetty::version: '9.2.20.v20161216'
@@ -92,6 +100,6 @@ You must include an additional parameter in the manifest called configuration, w
           http.selectors: 1
           http.acceptors: 1
           http.selectorPriorityDelta: 
-          http.acceptorPriorityDelta: 0
-        jsp:
+          http.acceptorPriorityDelta: 0
+        jsp:
 
