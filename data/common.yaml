@@ -32,5 +32,10 @@
       http:
         jetty.port: 8081
         http.timeout: 30000
+        http.soLingerTime: -1
+        http.selectors: 1
+        http.acceptors: 1
+        http.selectorPriorityDelta: 0
+        http.acceptorPriorityDelta: 0
       jsp:
 
