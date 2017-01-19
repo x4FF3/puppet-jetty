@@ -24,6 +24,11 @@ jetty.dump.start=<%= $jetty::configuration['modules']['server']['jetty.dump.star
 jetty.dump.stop=<%= $jetty::configuration['modules']['server']['jetty.dump.stop'] %>
 jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['jetty.delayDispatchUntilContent'] %>
 #jetty.host=myhost.com
+
+# As key value
+<% $jetty::configuration['modules']['server'].each do |key, value| -%>
+<%= key %>=<%= value %>
+<% end -%>
 <% } -%>
 
 <% unless $jetty::configuration['modules']['deploy'] =~ Undef { -%>
