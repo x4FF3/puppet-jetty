@@ -26,9 +26,9 @@ jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['
 #jetty.host=myhost.com
 
 # As key value
-<% $jetty::configuration['modules']['server'].each do |key, value| -%>
+<% $jetty::configuration['modules']['server'].each |key, value| { -%>
 <%= key %>=<%= value %>
-<% end -%>
+<% } -%>
 <% } -%>
 
 <% unless $jetty::configuration['modules']['deploy'] =~ Undef { -%>
