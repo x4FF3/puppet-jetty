@@ -1,4 +1,5 @@
-# Puppet-Jetty
+# Puppet-Jetty 
+[![Build Status](https://travis-ci.org/jjuarez/puppet-jetty.svg?branch=master)](https://travis-ci.org/jjuarez/puppet-jetty)
 
 A module to install Jetty and configure the service. This module has been highly inspired on maestroweb/jetty module
 
