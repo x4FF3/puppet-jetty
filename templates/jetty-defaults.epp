@@ -3,7 +3,7 @@ JETTY_BASE="<%= $::jetty::base %>"
 JETTY_USER="<%= $::jetty::user %>"
 JETTY_SHELL="/bin/sh"
 <% if $::jetty::arguments { -%>
-JETTY_ARGS="<%= $::jetty::arguments %>"
+JETTY_ARGS="<%= $::jetty::jetty_arguments %>"
 <% } -%>
 TMPDIR="<%= $::jetty::root %>/jetty/tmp"
 <% if $::jetty::java { -%>
