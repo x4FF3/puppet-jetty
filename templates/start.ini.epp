@@ -1,5 +1,5 @@
 <%- |
-  Optional[Hash] $configuration = { 'modules' =>{ } }
+  Hash $configuration 
 | -%>
 
 # To disable the warning message, comment the following line
