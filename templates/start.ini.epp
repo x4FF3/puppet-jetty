@@ -10,22 +10,6 @@
 # ---------------------------------------
 # Module: server
 --module=server
-# Thread setup
-threads.min=<%= $jetty::configuration['modules']['server']['threads.min'] %>
-threads.max=<%= $jetty::configuration['modules']['server']['threads.max'] %>
-threads.timeout=<%= $jetty::configuration['modules']['server']['threads.timeout'] %>
-# Jetty stuff
-jetty.output.buffer.size=<%= $jetty::configuration['modules']['server']['jetty.output.buffer.size'] %>
-jetty.request.header.size=<%= $jetty::configuration['modules']['server']['jetty.request.header.size'] %>
-jetty.response.header.size=<%= $jetty::configuration['modules']['server']['jetty.response.header.size'] %>
-jetty.send.server.version=<%= $jetty::configuration['modules']['server']['jetty.send.server.version'] %>
-jetty.send.date.header=<%= $jetty::configuration['modules']['server']['jetty.send.date.header'] %>
-jetty.dump.start=<%= $jetty::configuration['modules']['server']['jetty.dump.start'] %>
-jetty.dump.stop=<%= $jetty::configuration['modules']['server']['jetty.dump.stop'] %>
-jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['jetty.delayDispatchUntilContent'] %>
-#jetty.host=myhost.com
-
-# As key value
 <% $jetty::configuration['modules']['server'].each |$key, $value| { -%>
 <%= $key %>=<%= $value %>
 <% } -%>
@@ -35,7 +19,9 @@ jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['
 # ---------------------------------------
 # Module: deploy
 --module=deploy
-jetty.deploy.monitoredDirName=<%= $jetty::configuration['modules']['deploy']['jetty.deploy.monitoredDirName'] %>
+<% $jetty::configuration['modules']['deploy'].each |$key, $value| { -%>
+<%= $key %>=<%= $value %>
+<% } -%>
 <% } -%>
 
 <% unless $jetty::configuration['modules']['websocket'] =~ Undef { -%>
@@ -73,14 +59,10 @@ jsp-impl=apache
 # ---------------------------------------
 # Module: http
 --module=http
-jetty.port=<%= $jetty::configuration['modules']['http']['jetty.port'] %>
-http.timeout=<%= $jetty::configuration['modules']['http']['http.timeout'] %>
+<% $jetty::configuration['modules']['http'].each |$key, $value| { -%>
+<%= $key %>=<%= $value %>
+<% } -%>
 
-#http.soLingerTime=-1
-#http.selectors=1
-#http.acceptors=1
-#http.selectorPriorityDelta=0
-#http.acceptorPriorityDelta=0
 <% } -%>
 <% } -%>
 
