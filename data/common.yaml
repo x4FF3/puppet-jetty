@@ -28,7 +28,7 @@
         jetty.dump.stop: false
         jetty.delayDispatchUntilContent: false
       deploy:
-        jetty.deploy.monitoredDirName: my_apps
+        jetty.deploy.monitoredDirName: webapps
       http:
         jetty.port: 8081
         http.timeout: 30000

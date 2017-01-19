@@ -22,7 +22,7 @@ jetty.send.server.version=<%= $jetty::configuration['modules']['server']['jetty.
 jetty.send.date.header=<%= $jetty::configuration['modules']['server']['jetty.send.date.header'] %>
 jetty.dump.start=<%= $jetty::configuration['modules']['server']['jetty.dump.start'] %>
 jetty.dump.stop=<%= $jetty::configuration['modules']['server']['jetty.dump.stop'] %>
-jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['delayDispatchUntilContent'] %>
+jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['jetty.delayDispatchUntilContent'] %>
 #jetty.host=myhost.com
 <% } -%>
 
