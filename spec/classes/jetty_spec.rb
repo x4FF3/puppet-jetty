@@ -5,26 +5,28 @@ describe 'jetty' do
   context 'On a CentOS 6' do
     let :facts do
       {
-      :osfamily  => 'RedHat',
-      :osname    => 'CentOS',
+      :osfamily       => 'RedHat',
+      :osname         => 'CentOS',
       :osreleasemajor => '6'
       }
     end
 
     let :params do
       {
-      :root           => '/opt',
-      :base           => '/opt/web/base',
-      :version        => '9.2.20.v20161216',
-      :http_port      => 8081,
-      :service_ensure => 'running',
-      :manage_user    => true,
-      :user           => 'jettyuser',
-      :group          => 'jettygroup',
-      :mirror         => 'http://central.maven.org/maven2',
-      :archive_type   => 'tar.gz',
-      :java           => '/usr/bin/java',
-      :java_options   => '-Xms64 -Xmx128 -Dmy_test_option=test_value'
+      :root            => '/opt',
+      :base            => '/opt/web',
+      :version         => '9.2.20.v20161216',
+      :service_ensure  => 'running',
+      :manage_user     => true,
+      :user            => 'jettyuser',
+      :group           => 'jettygroup',
+      :mirror          => 'http://central.maven.org/maven2',
+      :archive_type    => 'tar.gz',
+      :checksum_type   => 'sha1',
+      :jetty_arguments => 'jetty.bizarre_option=bizarre_value',
+      :java            => '/usr/bin/java',
+      :java_options    => '-Xms64 -Xmx128 -Djvm_option=jvm_value',
+      :configuration   => { 'modules' =>{  } }
       }
     end
 
@@ -66,7 +68,7 @@ describe 'jetty' do
     end
 
     it do
-      is_expected.to contain_file('/opt/web/base').with({
+      is_expected.to contain_file('/opt/web').with({
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
@@ -74,7 +76,7 @@ describe 'jetty' do
     end
 
     it do
-      is_expected.to contain_file('/opt/web/base/webapps').with({
+      is_expected.to contain_file('/opt/web/webapps').with({
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
@@ -94,17 +96,20 @@ describe 'jetty' do
     it do
       is_expected.to contain_file('/etc/default/jetty') \
         .with_content(/^JETTY_HOME="\/opt\/jetty"$/) \
-        .with_content(/^JETTY_BASE="\/opt\/web\/base"$/) \
+        .with_content(/^JETTY_BASE="\/opt\/web"$/) \
         .with_content(/^JETTY_USER="jettyuser"$/) \
         .with_content(/^JETTY_SHELL="\/bin\/sh"$/) \
+        .with_content(/^JETTY_ARGS="jetty.bizarre_option=bizarre_value"$/) \
         .with_content(/^TMPDIR="\/opt\/jetty\/tmp"$/) \
-        .with_content(/^JETTY_ARGS="jetty.port=8081"$/)
+        .with_content(/^JAVA="\/usr\/bin\/java"$/) \
+        .with_content(/^JAVA_OPTIONS="-Xms64 -Xmx128 -Djvm_option=jvm_value"$/)
     end
 
     it do
       is_expected.to contain_service('Jetty Service').with({
         'ensure'     => 'running',
         'name'       => 'jetty',
+        'enable'     => true,
         'hasrestart' => true,
         'hasstatus'  => true,
       })

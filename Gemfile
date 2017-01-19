@@ -1,14 +1,19 @@
-source :rubygems
+source 'https://rubygems.org/'
 
-puppet_version = ENV.key?('PUPPET_VERSION') ? "= #{ENV['PUPPET_VERSION']}" : ['>=4.0.0']
-
-group :rake do
-  gem 'puppet', puppet_version
-  gem 'puppetlabs_spec_helper'
-  gem 'rspec-puppet'
-  gem 'rake'
-  gem 'puppet-lint'
-  gem 'metadata-json-lint'
-  gem 'puppet-blacksmith'
+group :development, :test do
+  gem 'json', :require => false
+  gem 'metadata-json-lint', :require => false
+  gem 'puppetlabs_spec_helper', :require => false
+  gem 'puppet-lint', :require => false
+  gem 'rake', :require => false
+  gem 'rspec-puppet', :require => false
+  gem 'puppet-blacksmith', :require => false
 end
 
+if puppetversion = ENV['PUPPET_GEM_VERSION']
+  gem 'puppet', puppetversion, :require => false
+else
+  gem 'puppet', :require => false
+end
+
+# vim:ft=ruby

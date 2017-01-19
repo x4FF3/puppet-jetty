@@ -1,11 +1,9 @@
-.idea
-.rvmrc
 .ruby-version
 .ruby-gemset
-.project
-.librarian/
+.bundle
 .tmp/
-.vagrant
+Gemfile.lock
 doc/
 spec/fixtures/
 pkg/
+vendor/
