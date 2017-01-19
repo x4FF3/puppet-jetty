@@ -1,6 +1,6 @@
 ---
   jetty::root: '/opt'
-  jetty::base: '/opt/web/base'
+  jetty::base: '/opt/web'
   jetty::tmpdir: '/opt/jetty/tmp'
   jetty::version: '9.2.20.v20161216'
   jetty::http_port: 8081
@@ -10,5 +10,10 @@
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
   jetty::archive_type: 'tar.gz'
+  jetty::checksum_type: 'sha1'
   jetty::java:
   jetty::java_options:
+  jetty::options:
+    modules:
+      http:
+        jetty.port: 8081
