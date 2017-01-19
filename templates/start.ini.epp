@@ -1,74 +1,75 @@
-<%- | Optional[Hash] $configuration = undef | -%>
 
+<% unless $jetty::configuration =~ Undef { -%>
+
+<% unless $jetty::configuration['warning'] =~ Undef { -%>
 # To disable the warning message, comment the following line
 --module=home-base-warning
 
-<% unless $configuration =~ Undef { -%>
-
-<% unless $configuration['modules']['server'] =~ Undef { -%>
+<% } -%>
+<% unless $jetty::configuration['modules']['server'] =~ Undef { -%>
 # ---------------------------------------
 # Module: server
 --module=server
 # Thread setup
-threads.min=<%= $configuration['modules']['server']['threads.min'] %>
-threads.max=<%= $configuration['modules']['server']['threads.max'] %>
-threads.timeout=<%= $configuration['modules']['server']['threads.timeout'] %>
+threads.min=<%= $jetty::configuration['modules']['server']['threads.min'] %>
+threads.max=<%= $jetty::configuration['modules']['server']['threads.max'] %>
+threads.timeout=<%= $jetty::configuration['modules']['server']['threads.timeout'] %>
 # Jetty stuff
-jetty.output.buffer.size=<%= $configuration['modules']['server']['jetty.output.buffer.size'] %>
-jetty.request.header.size=<%= $configuration['modules']['server']['jetty.request.header.size'] %>
-jetty.response.header.size=<%= $configuration['modules']['server']['jetty.response.header.size'] %>
-jetty.send.server.version=<%= $configuration['modules']['server']['jetty.send.server.version'] %>
-jetty.send.date.header=<%= $configuration['modules']['server']['jetty.send.date.header'] %>
-jetty.dump.start=<%= $configuration['modules']['server']['jetty.dump.start'] %>
-jetty.dump.stop=<%= $configuration['modules']['server']['jetty.dump.stop'] %>
-jetty.delayDispatchUntilContent=<%= $configuration['modules']['server']['delayDispatchUntilContent'] %>
+jetty.output.buffer.size=<%= $jetty::configuration['modules']['server']['jetty.output.buffer.size'] %>
+jetty.request.header.size=<%= $jetty::configuration['modules']['server']['jetty.request.header.size'] %>
+jetty.response.header.size=<%= $jetty::configuration['modules']['server']['jetty.response.header.size'] %>
+jetty.send.server.version=<%= $jetty::configuration['modules']['server']['jetty.send.server.version'] %>
+jetty.send.date.header=<%= $jetty::configuration['modules']['server']['jetty.send.date.header'] %>
+jetty.dump.start=<%= $jetty::configuration['modules']['server']['jetty.dump.start'] %>
+jetty.dump.stop=<%= $jetty::configuration['modules']['server']['jetty.dump.stop'] %>
+jetty.delayDispatchUntilContent=<%= $jetty::configuration['modules']['server']['delayDispatchUntilContent'] %>
 #jetty.host=myhost.com
 <% } -%>
 
-<% unless $configuration['modules']['deploy'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['deploy'] =~ Undef { -%>
 # ---------------------------------------
 # Module: deploy
 --module=deploy
-jetty.deploy.monitoredDirName=<%= $configuration['modules']['deploy']['jetty.deploy.monitoredDirName'] %>
+jetty.deploy.monitoredDirName=<%= $jetty::configuration['modules']['deploy']['jetty.deploy.monitoredDirName'] %>
 <% } -%>
 
-<% unless $configuration['modules']['websocket'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['websocket'] =~ Undef { -%>
 # ---------------------------------------
 # Module: websocket
 --module=websocket
 <% } -%>
 
-<% unless $configuration['modules']['ext'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['ext'] =~ Undef { -%>
 # ---------------------------------------
 # Module: ext
 --module=ext
 <% } -%>
 
-<% unless $configuration['modules']['resources'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['resources'] =~ Undef { -%>
 # ---------------------------------------
 # Module: resources
 --module=resources
 <% } -%>
 
-<% unless $configuration['modules']['jsp'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['jsp'] =~ Undef { -%>
 # ---------------------------------------
 # Module: jsp
 --module=jsp
 jsp-impl=apache
 <% } -%>
 
-<% unless $configuration['modules']['jstl'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['jstl'] =~ Undef { -%>
 # ---------------------------------------
 # Module: jstl
 --module=jstl
 <% } -%>
 
-<% unless $configuration['modules']['http'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['http'] =~ Undef { -%>
 # ---------------------------------------
 # Module: http
 --module=http
-jetty.port=<%= $configuration['modules']['http']['jetty.port'] %>
-http.timeout=<%= $configuration['modules']['http']['http.timeout'] %>
+jetty.port=<%= $jetty::configuration['modules']['http']['jetty.port'] %>
+http.timeout=<%= $jetty::configuration['modules']['http']['http.timeout'] %>
 
 #http.soLingerTime=-1
 #http.selectors=1
