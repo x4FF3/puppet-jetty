@@ -1,14 +1,41 @@
 ---
   jetty::root: '/opt'
-  jetty::base: '/opt/web/base'
+  jetty::base: '/opt/web'
   jetty::tmpdir: '/opt/jetty/tmp'
   jetty::version: '9.2.20.v20161216'
-  jetty::http_port: 8081
   jetty::service_ensure: 'running'
   jetty::manage_user: true
   jetty::user: 'jetty'
   jetty::group: 'servers'
   jetty::mirror: 'http://central.maven.org/maven2'
   jetty::archive_type: 'tar.gz'
+  jetty::checksum_type: 'sha1'
+  jetty::jetty_arguments:
   jetty::java:
   jetty::java_options:
+  jetty::configuration:
+    modules:
+      server:
+        threads.min: 10
+        threads.max: 20
+        threads.timeout: 60000
+        jetty.output.buffer.size: 32768
+        jetty.request.header.size: 8192
+        jetty.response.header.size: 8192
+        jetty.send.server.version: false
+        jetty.send.date.header: false
+        jetty.dump.start: false
+        jetty.dump.stop: false
+        jetty.delayDispatchUntilContent: false
+      deploy:
+        jetty.deploy.monitoredDirName: webapps
+      http:
+        jetty.port: 8081
+        http.timeout: 30000
+        http.soLingerTime: -1
+        http.selectors: 1
+        http.acceptors: 1
+        http.selectorPriorityDelta: 0
+        http.acceptorPriorityDelta: 0
+      jsp:
+
