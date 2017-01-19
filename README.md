@@ -6,11 +6,13 @@ A module to install Jetty and configure the service. This module has been highly
 ## Usage
 
 ### Minimal setup
+
   class { '::jetty':
     version => '9.2.20.v20161216',
   }
 
 ### More sofisticated setup
+
   class { '::jetty':
     root            => '/opt',
     base            => '/opt/web/base',
@@ -92,3 +94,4 @@ You must include an additional parameter in the manifest called configuration, w
           http.selectorPriorityDelta: 
           http.acceptorPriorityDelta: 0
         jsp:
+
