@@ -2,7 +2,9 @@ JETTY_HOME="<%= $::jetty::root %>/jetty"
 JETTY_BASE="<%= $::jetty::base %>"
 JETTY_USER="<%= $::jetty::user %>"
 JETTY_SHELL="/bin/sh"
-JETTY_ARGS="jetty.port=<%= $::jetty::http_port %>"
+<% if $::jetty::arguments { -%>
+JETTY_ARGS="<%= $::jetty::arguments %>"
+<% } -%>
 TMPDIR="<%= $::jetty::root %>/jetty/tmp"
 <% if $::jetty::java { -%>
 JAVA="<%= $::jetty::java %>"
