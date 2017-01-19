@@ -23,7 +23,7 @@ describe 'jetty' do
       :mirror          => 'http://central.maven.org/maven2',
       :archive_type    => 'tar.gz',
       :checksum_type   => 'sha1',
-      :jetty_arguments => 'jetty.bizarre_option=with_bizarre_value',
+      :jetty_arguments => 'jetty.bizarre_option=bizarre_value',
       :java            => '/usr/bin/java',
       :java_options    => '-Xms64 -Xmx128 -Djvm_option=jvm_value',
       :configuration   => { 'modules' =>{  } }
