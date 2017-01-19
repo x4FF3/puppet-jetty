@@ -1,11 +1,11 @@
-<%- |
-  Hash $configuration 
-| -%>
+<%- | Optional[Hash] $configuration = undef | -%>
 
 # To disable the warning message, comment the following line
 --module=home-base-warning
 
-<% if $configuration['modules']['server'] != undef { -%>
+<% unless $configuration =~ Undef { -%>
+
+<% unless $configuration['modules']['server'] =~ Undef { -%>
 # ---------------------------------------
 # Module: server
 --module=server
@@ -25,45 +25,45 @@ jetty.delayDispatchUntilContent=<%= $configuration['modules']['server']['delayDi
 #jetty.host=myhost.com
 <% } -%>
 
-<% if $configuration['modules']['deploy'] != undef { -%>
+<% unless $configuration['modules']['deploy'] =~ Undef { -%>
 # ---------------------------------------
 # Module: deploy
 --module=deploy
 jetty.deploy.monitoredDirName=<%= $configuration['modules']['deploy']['jetty.deploy.monitoredDirName'] %>
 <% } -%>
 
-<% if $configuration['modules']['websocket'] != undef { -%>
+<% unless $configuration['modules']['websocket'] =~ Undef { -%>
 # ---------------------------------------
 # Module: websocket
 --module=websocket
 <% } -%>
 
-<% if $configuration['modules']['ext'] != undef { -%>
+<% unless $configuration['modules']['ext'] =~ Undef { -%>
 # ---------------------------------------
 # Module: ext
 --module=ext
 <% } -%>
 
-<% if $configuration['modules']['resources'] != undef { -%>
+<% unless $configuration['modules']['resources'] =~ Undef { -%>
 # ---------------------------------------
 # Module: resources
 --module=resources
 <% } -%>
 
-<% if $configuration['modules']['jsp'] != undef { -%>
+<% unless $configuration['modules']['jsp'] =~ Undef { -%>
 # ---------------------------------------
 # Module: jsp
 --module=jsp
 jsp-impl=apache
 <% } -%>
 
-<% if $configuration['modules']['jstl'] != undef { -%>
+<% unless $configuration['modules']['jstl'] =~ Undef { -%>
 # ---------------------------------------
 # Module: jstl
 --module=jstl
 <% } -%>
 
-<% if $configuration['modules']['http'] != undef { -%>
+<% unless $configuration['modules']['http'] =~ Undef { -%>
 # ---------------------------------------
 # Module: http
 --module=http
@@ -75,5 +75,6 @@ http.timeout=<%= $configuration['modules']['http']['http.timeout'] %>
 #http.acceptors=1
 #http.selectorPriorityDelta=0
 #http.acceptorPriorityDelta=0
+<% } -%>
 <% } -%>
 
