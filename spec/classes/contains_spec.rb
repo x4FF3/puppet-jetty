@@ -14,7 +14,7 @@ describe 'jetty' do
     let :params do
       {
       :root           => '/opt',
-      :base           => '/opt/web/base',
+      :base           => '/opt/web',
       :version        => '9.2.20.v20161216',
       :http_port      => 8081,
       :service_ensure => 'running',
@@ -23,8 +23,10 @@ describe 'jetty' do
       :group          => 'jettygroup',
       :mirror         => 'http://central.maven.org/maven2',
       :archive_type   => 'tar.gz',
+      :checksum_type  => 'sha1',
       :java           => '/usr/bin/java',
-      :java_options   => '-Xms64 -Xmx128 -Dmy_test_option=test_value'
+      :java_options   => '-Xms64 -Xmx128 -Dmy_test_option=test_value',
+      :options        => {  }
       }
     end
 

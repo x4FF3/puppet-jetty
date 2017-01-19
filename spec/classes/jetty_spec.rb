@@ -14,7 +14,7 @@ describe 'jetty' do
     let :params do
       {
       :root           => '/opt',
-      :base           => '/opt/web/base',
+      :base           => '/opt/web',
       :version        => '9.2.20.v20161216',
       :http_port      => 8081,
       :service_ensure => 'running',
@@ -23,8 +23,10 @@ describe 'jetty' do
       :group          => 'jettygroup',
       :mirror         => 'http://central.maven.org/maven2',
       :archive_type   => 'tar.gz',
+      :checksum_type  => 'sha1',
       :java           => '/usr/bin/java',
-      :java_options   => '-Xms64 -Xmx128 -Dmy_test_option=test_value'
+      :java_options   => '-Xms64 -Xmx128 -Dmy_test_option=test_value',
+      :options        => {  }
       }
     end
 
@@ -66,7 +68,7 @@ describe 'jetty' do
     end
 
     it do
-      is_expected.to contain_file('/opt/web/base').with({
+      is_expected.to contain_file('/opt/web').with({
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
@@ -74,7 +76,7 @@ describe 'jetty' do
     end
 
     it do
-      is_expected.to contain_file('/opt/web/base/webapps').with({
+      is_expected.to contain_file('/opt/web/webapps').with({
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
@@ -94,7 +96,7 @@ describe 'jetty' do
     it do
       is_expected.to contain_file('/etc/default/jetty') \
         .with_content(/^JETTY_HOME="\/opt\/jetty"$/) \
-        .with_content(/^JETTY_BASE="\/opt\/web\/base"$/) \
+        .with_content(/^JETTY_BASE="\/opt\/web"$/) \
         .with_content(/^JETTY_USER="jettyuser"$/) \
         .with_content(/^JETTY_SHELL="\/bin\/sh"$/) \
         .with_content(/^TMPDIR="\/opt\/jetty\/tmp"$/) \
@@ -105,6 +107,7 @@ describe 'jetty' do
       is_expected.to contain_service('Jetty Service').with({
         'ensure'     => 'running',
         'name'       => 'jetty',
+        'enable'     => true,
         'hasrestart' => true,
         'hasstatus'  => true,
       })
