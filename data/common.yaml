@@ -3,7 +3,6 @@
   jetty::base: '/opt/web'
   jetty::tmpdir: '/opt/jetty/tmp'
   jetty::version: '9.2.20.v20161216'
-  jetty::http_port: 8081
   jetty::service_ensure: 'running'
   jetty::manage_user: true
   jetty::user: 'jetty'
@@ -11,9 +10,10 @@
   jetty::mirror: 'http://central.maven.org/maven2'
   jetty::archive_type: 'tar.gz'
   jetty::checksum_type: 'sha1'
+  jetty::jetty_arguments:
   jetty::java:
   jetty::java_options:
-  jetty::options:
+  jetty::configuration:
     modules:
       server:
         threads.min: 10
