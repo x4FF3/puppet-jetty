@@ -4,7 +4,7 @@ class jetty::install inherits jetty {
 
   $_jetty_home             = "${jetty::root}/jetty"
   $_jetty_tmp              = "${_jetty_home}/tmp"
-  $_jetty_logs             = "${_jetty_home}/log"
+  $_jetty_logs             = "${_jetty_home}/logs"
   $_jetty_sh               = "${_jetty_home}/bin/jetty.sh"
   $_jetty_base_webapps     = "${jetty::base}/webapps"
   $_download_directory     = "jetty-distribution-${jetty::version}"
