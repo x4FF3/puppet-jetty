@@ -1,5 +1,7 @@
 # Puppet-Jetty 
 [![Build Status](https://travis-ci.org/jjuarez/puppet-jetty.svg?branch=master)](https://travis-ci.org/jjuarez/puppet-jetty)
+[![Github Tag](https://img.shields.io/github/tag/jjuarez/puppet-jetty.svg)](https://github.com/jjuarez/puppet-jetty)
+[![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/jjuarez/puppet-jetty.svg)](https://forge.puppetlabs.com/jjuarez/puppet-jetty)
 
 A module to install Jetty and configure the service. This module has been highly inspired on maestroweb/jetty module
 
