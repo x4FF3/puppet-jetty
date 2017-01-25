@@ -6,7 +6,6 @@ class jetty::install inherits jetty {
   $_jetty_tmp              = "${_jetty_home}/tmp"
   $_jetty_logs             = "${_jetty_home}/logs"
   $_jetty_sh               = "${_jetty_home}/bin/jetty.sh"
-  $_jetty_base_webapps     = "${jetty::base}/webapps"
   $_download_directory     = "jetty-distribution-${jetty::version}"
   $_download_file_name     = "${_download_directory}.${jetty::archive_type}"
   $_tmp_download_file_name = "/tmp/${_download_file_name}"
@@ -16,27 +15,30 @@ class jetty::install inherits jetty {
   include '::archive'
 
   if $jetty::manage_user {
-    ensure_resource('user', $jetty::user, {
+    ensure_resource('user', $::jetty::user, {
       shell  => '/bin/false',
       system => false,
       home   => $_jetty_tmp,
-      gid    => $jetty::group,
+      gid    => $::jetty::group,
     })
 
-    ensure_resource('group', $jetty::group, {
+    ensure_resource('group', $::jetty::group, {
       ensure => present,
     })
   }
 
+  File {
+    owner => $::jetty::user,
+    group => $::jetty::group,
+    mode  => '0774',
+  }
+
   file { $_jetty_home:
     ensure => link,
-    target => "${jetty::root}/${_download_directory}",
+    target => "${::jetty::root}/${_download_directory}",
   } ->
-  file { "${jetty::root}/${_download_directory}":
+  file { "${::jetty::root}/${_download_directory}":
     ensure => directory,
-    owner  => $jetty::user,
-    group  => $jetty::group,
-    mode   => '0754',
   } ->
   archive { $_tmp_download_file_name:
     ensure          => present,
@@ -45,17 +47,20 @@ class jetty::install inherits jetty {
     checksum_verify => true,
     allow_insecure  => true,
     extract         => true,
-    extract_path    => $jetty::root,
+    extract_path    => $::jetty::root,
     cleanup         => true,
-    creates         => "${jetty::root}/jetty-installed",
-    user            => $jetty::user,
-    group           => $jetty::group,
-    require         => User[$jetty::user],
+    creates         => "${::jetty::root}/jetty-installed",
+    user            => $::jetty::user,
+    group           => $::jetty::group,
+    require         => User[$::jetty::user],
   }
 
   file { '/etc/init.d/jetty':
     ensure => link,
     target => $_jetty_sh,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0740',
   } ->
   file { '/var/log/jetty':
     ensure => link,
@@ -63,23 +68,8 @@ class jetty::install inherits jetty {
   } ->
   file { $_jetty_tmp:
     ensure => directory,
-    owner  => $jetty::user,
-    group  => $jetty::group,
-    mode   => '0775',
   }
 
-  # Jetty Base setup
-  file { $jetty::base:
-    ensure => directory,
-    owner  => $jetty::user,
-    group  => $jetty::group,
-    mode   => '0754',
-  } ->
-  file { $_jetty_base_webapps:
-    ensure => directory,
-    owner  => $jetty::user,
-    group  => $jetty::group,
-    mode   => '0754',
-  }
+  ::jetty::instance { $::jetty::base: }
 }
 
