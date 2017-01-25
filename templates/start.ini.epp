@@ -4,8 +4,8 @@
 <% unless $jetty::configuration['warning'] =~ Undef { -%>
 # To disable the warning message, comment the following line
 --module=home-base-warning
-
 <% } -%>
+
 <% unless $jetty::configuration['modules']['server'] =~ Undef { -%>
 # ---------------------------------------
 # Module: server
@@ -13,6 +13,12 @@
 <% $jetty::configuration['modules']['server'].each |$key, $value| { -%>
 <%= $key %>=<%= $value %>
 <% } -%>
+<% } -%>
+
+<% unless $jetty::configuration['modules']['logging'] =~ Undef { -%>
+# ---------------------------------------
+# Module: logging
+--module=logging
 <% } -%>
 
 <% unless $jetty::configuration['modules']['deploy'] =~ Undef { -%>
