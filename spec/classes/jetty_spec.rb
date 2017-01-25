@@ -63,7 +63,7 @@ describe 'jetty' do
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
-        'mode'   => '0775',
+        'mode'   => '0774',
       })
     end
 
