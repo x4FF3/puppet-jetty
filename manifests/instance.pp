@@ -10,10 +10,6 @@ define jetty::instance(
     mode  => '0775'
   }
 
-  file { $_logging_module_configuration:
-    ensure => present,
-    source => 'puppet:///modules/jetty/logging.mod',
-  } ->
   file { [
     $path,
     "${path}/lib",
@@ -22,6 +18,10 @@ define jetty::instance(
     "${path}/webapps"
     ]:
     ensure => directory,
+  } ->
+  file { $_logging_module_configuration:
+    ensure => present,
+    source => 'puppet:///modules/jetty/logging.mod',
   }
 }
 
