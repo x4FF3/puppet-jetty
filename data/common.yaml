@@ -2,7 +2,7 @@
   jetty::root: '/opt'
   jetty::base: '/opt/web'
   jetty::tmpdir: '/opt/jetty/tmp'
-  jetty::version: '9.2.20.v20161216'
+  jetty::version: '9.2.21.v20170120'
   jetty::service_ensure: 'running'
   jetty::manage_user: true
   jetty::user: 'jetty'
@@ -27,6 +27,7 @@
         jetty.dump.start: false
         jetty.dump.stop: false
         jetty.delayDispatchUntilContent: false
+      logging:
       deploy:
         jetty.deploy.monitoredDirName: webapps
       http:
