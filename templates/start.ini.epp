@@ -6,12 +6,12 @@
 --module=home-base-warning
 <% } -%>
 
-<% unless $jetty::configuration['modules']['server'] =~ Undef { -%>
+<% unless $jetty::configuration['modules'] =~ Undef { -%>
 # ---------------------------------------
 # Module: server
 --module=server
 <% $jetty::configuration['modules']['server'].each |$key, $value| { -%>
-<%= $key %>=<%= $value %>
+<%= $key -%>=<%= $value -%>
 <% } -%>
 <% } -%>
 
@@ -26,7 +26,7 @@
 # Module: deploy
 --module=deploy
 <% $jetty::configuration['modules']['deploy'].each |$key, $value| { -%>
-<%= $key %>=<%= $value %>
+<%= $key -%>=<%= $value -%>
 <% } -%>
 <% } -%>
 
@@ -66,9 +66,9 @@ jsp-impl=apache
 # Module: http
 --module=http
 <% $jetty::configuration['modules']['http'].each |$key, $value| { -%>
-<%= $key %>=<%= $value %>
+<%= $key- %>=<%= $value -%>
+<% } -%>
 <% } -%>
 
-<% } -%>
 <% } -%>
 
