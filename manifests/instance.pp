@@ -29,8 +29,8 @@ define jetty::instance(
     source => 'puppet:///modules/jetty/jetty-logging.properties',
   } ->
   file { "${path}/resources/log4j.properties":
-    ensure  => present,
-    content => epp('jetty/log4j.properties.epp'),
+    ensure => present,
+    source => 'puppet:///modules/jetty/log4j.properties',
   }
 
   archive { "${path}/lib/logging/slf4-api-1.6.6.jar":
