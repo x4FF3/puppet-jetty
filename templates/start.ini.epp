@@ -6,7 +6,7 @@
 --module=home-base-warning
 <% } -%>
 
-<% unless $jetty::configuration['modules'] =~ Undef { -%>
+<% unless $jetty::configuration['modules']['server'] =~ Undef { -%>
 # ---------------------------------------
 # Module: server
 --module=server
