@@ -12,6 +12,7 @@ define jetty::instance(
 
   file { [
     $path,
+    "${path}/logs",
     "${path}/lib",
     "${path}/lib/logging",
     "${path}/resources",
