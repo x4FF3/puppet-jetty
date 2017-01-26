@@ -60,7 +60,6 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar',
-    mode    => '0740',
     require => File["${path}/lib/logging"],
   }
 }
