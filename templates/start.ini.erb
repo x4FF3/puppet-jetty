@@ -6,7 +6,7 @@
 
 <% if @configuration['modules'].has_key?('server') -%>
 --module=server
-<% @configuration['modules']['server'].each do |k,v| -%>
+<% @configuration['modules'].fetch('server',[]).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
@@ -17,7 +17,7 @@
 
 <% if @configuration['modules'].has_key?('deploy') -%>
 --module=deploy
-<% @configuration['modules'].has_key?('deploy').each do |k,v| -%>
+<% @configuration['modules'].fetch('deploy', []).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
@@ -45,7 +45,7 @@ jsp-impl=apache
 
 <% if @configuration['modules'].has_key?('http') -%>
 --module=http
-<% @configuration['modules']['http'].each do |k,v| -%>
+<% @configuration['modules'].fetch('http', []).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
