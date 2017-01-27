@@ -13,7 +13,7 @@
   jetty::jetty_arguments:
   jetty::java:
   jetty::java_options:
-  jetty::log:
+  jetty::logconfig:
     level: 'INFO'
     appenders:
       - Console
