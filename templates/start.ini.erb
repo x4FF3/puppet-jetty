@@ -1,48 +1,48 @@
-<% unless $jetty::configuration =~ Undef -%>
+<% unless @configuration =~ Undef -%>
 --module=home-base-warning
 
-<% if $jetty::configuration['modules'].has_key?('server') -%>
+<% if @configuration['modules'].has_key?('server') -%>
 --module=server
-<% $jetty::configuration['modules']['server'].each do |k,v| -%>
+<% $configuration['modules']['server'].each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('logging') -%>
+<% if @configuration['modules'].has_key?('logging') -%>
 --module=logging
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('deploy') -%>
+<% if @configuration['modules'].has_key?('deploy') -%>
 --module=deploy
-<% $jetty::configuration['modules'].has_key?('deploy').each do |k,v| -%>
+<% $configuration['modules'].has_key?('deploy').each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('websocket') -%>
+<% if @configuration['modules'].has_key?('websocket') -%>
 --module=websocket
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('ext') -%>
+<% if @configuration['modules'].has_key?('ext') -%>
 --module=ext
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('resources') -%>
+<% if @configuration['modules'].has_key?('resources') -%>
 --module=resources
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('jsp') -%>
+<% if @configuration['modules'].has_key?('jsp') -%>
 --module=jsp
 jsp-impl=apache
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('jstl') -%>
+<% if @configuration['modules'].has_key?('jstl') -%>
 --module=jstl
 <% end -%>
 
-<% if $jetty::configuration['modules'].has_key?('http') -%>
+<% if @configuration['modules'].has_key?('http') -%>
 --module=http
-<% $jetty::configuration['modules']['http'].each do |k,v| -%>
+<% @configuration['modules']['http'].each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
