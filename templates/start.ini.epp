@@ -1,71 +1,52 @@
+<% $::jetty::configuration.inspect -%>
 
-<% unless $jetty::configuration =~ Undef { -%>
+<% unless $::jetty::configuration =~ Undef { -%>
 
-<% unless $jetty::configuration['warning'] =~ Undef { -%>
 # To disable the warning message, comment the following line
 --module=home-base-warning
-<% } -%>
 
-<% unless $jetty::configuration['modules']['server'] =~ Undef { -%>
-# ---------------------------------------
-# Module: server
+<% unless $::jetty::configuration['modules']['server'] =~ Undef { -%>
 --module=server
-<% $jetty::configuration['modules']['server'].each |$key, $value| { -%>
+<% $::jetty::configuration['modules']['server'].each |$key, $value| { -%>
 <%= $key %>=<%= $value %>
 <% } -%>
 <% } -%>
 
-<% unless $jetty::configuration['modules']['logging'] =~ Undef { -%>
-# ---------------------------------------
-# Module: logging
+<% unless $::jetty::configuration['modules']['logging'] =~ Undef { -%>
 --module=logging
 <% } -%>
 
-<% unless $jetty::configuration['modules']['deploy'] =~ Undef { -%>
-# ---------------------------------------
-# Module: deploy
+<% unless $::jetty::configuration['modules']['deploy'] =~ Undef { -%>
 --module=deploy
 <% $jetty::configuration['modules']['deploy'].each |$key, $value| { -%>
 <%= $key -%>=<%= $value -%>
 <% } -%>
 <% } -%>
 
-<% unless $jetty::configuration['modules']['websocket'] =~ Undef { -%>
-# ---------------------------------------
-# Module: websocket
+<% unless $::jetty::configuration['modules']['websocket'] =~ Undef { -%>
 --module=websocket
 <% } -%>
 
-<% unless $jetty::configuration['modules']['ext'] =~ Undef { -%>
-# ---------------------------------------
-# Module: ext
+<% unless $::jetty::configuration['modules']['ext'] =~ Undef { -%>
 --module=ext
 <% } -%>
 
-<% unless $jetty::configuration['modules']['resources'] =~ Undef { -%>
-# ---------------------------------------
-# Module: resources
+<% unless $::jetty::configuration['modules']['resources'] =~ Undef { -%>
 --module=resources
 <% } -%>
 
-<% unless $jetty::configuration['modules']['jsp'] =~ Undef { -%>
-# ---------------------------------------
-# Module: jsp
+<% unless $::jetty::configuration['modules']['jsp'] =~ Undef { -%>
 --module=jsp
 jsp-impl=apache
 <% } -%>
 
-<% unless $jetty::configuration['modules']['jstl'] =~ Undef { -%>
-# ---------------------------------------
-# Module: jstl
+<% unless $::jetty::configuration['modules']['jstl'] =~ Undef { -%>
 --module=jstl
 <% } -%>
 
-<% unless $jetty::configuration['modules']['http'] =~ Undef { -%>
-# ---------------------------------------
-# Module: http
+<% unless $::jetty::configuration['modules']['http'] =~ Undef { -%>
 --module=http
-<% $jetty::configuration['modules']['http'].each |$key, $value| { -%>
+<% $::jetty::configuration['modules']['http'].each |$key, $value| { -%>
 <%= $key %>=<%= $value %>
 <% } -%>
 <% } -%>
