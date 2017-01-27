@@ -1,48 +1,53 @@
 <% if @configuration %>
+<%
+  @modules = @configuration.fetch('modules', {})
+%>
 --module=home-base-warning
 
-<% if @configuration.fetch('modules', {}).has_key?('server') %>
+<% if @modules.has_key?('server') %>
 --module=server
-<% @configuration.fetch('modules', {}).fetch('server', {}).each do |k,v| %>
+<% @modules.fetch('server', {}).each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
 
-<% if @configuration['modules'].has_key?('logging') %>
+<% if @modules.has_key?('logging') %>
 --module=logging
 <% end %>
 
-<% if @configuration['modules'].has_key?('deploy') %>
+<% if @modules.has_key?('deploy') %>
 --module=deploy
-<% @configuration['modules'].fetch('deploy', {}).each do |k,v| %>
+<% @modules.fetch('deploy', {}).each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
 
-<% if @configuration['modules'].has_key?('websocket') %>
+<% if @modules.has_key?('websocket') %>
 --module=websocket
 <% end %>
 
-<% if @configuration['modules'].has_key?('ext') %>
+<% if @modules.has_key?('ext') %>
 --module=ext
 <% end %>
 
-<% if @configuration['modules'].has_key?('resources') %>
+<% if @modules.has_key?('resources') %>
 --module=resources
 <% end %>
 
-<% if @configuration['modules'].has_key?('jsp') %>
+<% if @modules.has_key?('jsp') %>
 --module=jsp
-jsp-impl=apache
+<% @modules.fetch('jsp', {}).each do |k,v| %>
+<%= k %>=<%= v %>
+<% end %>
 <% end %>
 
-<% if @configuration['modules'].has_key?('jstl') %>
+<% if @modules.has_key?('jstl') %>
 --module=jstl
 <% end %>
 
-<% if @configuration['modules'].has_key?('http') %>
+<% if @modules.has_key?('http') %>
 --module=http
-<% @configuration['modules'].fetch('http', {}).each do |k,v| %>
+<% @modules.fetch('http', {}).each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
