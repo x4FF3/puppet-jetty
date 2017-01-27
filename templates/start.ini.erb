@@ -1,50 +1,50 @@
-<%= $::jetty::configuration %>
-<% unless $::jetty::configuration =~ Undef -%>
+<%= $jetty::configuration %>
+<% unless $jetty::configuration =~ Undef -%>
 --module=home-base-warning
 
-<% if $::jetty::configuration.['modules'].has_key?('server') -%>
+<% if $jetty::configuration['modules'].has_key?('server') -%>
 --module=server
-<% $::jetty::configuration['modules']['server'].each do |$k,$v| -%>
-<%= $k %>=<%= $v %>
+<% $jetty::configuration['modules']['server'].each do |k,v| -%>
+<%= k %>=<%= v %>
 <% end -%>
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('logging') -%>
+<% if $jetty::configuration['modules'].has_key?('logging') -%>
 --module=logging
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('deploy') -%>
+<% if $jetty::configuration['modules'].has_key?('deploy') -%>
 --module=deploy
-<% $jetty::configuration['modules'].has_key?('deploy').each do |$k,$v| -%>
-<%= $k -%>=<%= $v -%>
+<% $jetty::configuration['modules'].has_key?('deploy').each do |k,v| -%>
+<%= k %>=<%= v %>
 <% end -%>
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('websocket') -%>
+<% if $jetty::configuration['modules'].has_key?('websocket') -%>
 --module=websocket
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('ext') -%>
+<% if $jetty::configuration['modules'].has_key?('ext') -%>
 --module=ext
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('resources') -%>
+<% if $jetty::configuration['modules'].has_key?('resources') -%>
 --module=resources
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('jsp') -%>
+<% if $jetty::configuration['modules'].has_key?('jsp') -%>
 --module=jsp
 jsp-impl=apache
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('jstl') -%>
+<% if $jetty::configuration['modules'].has_key?('jstl') -%>
 --module=jstl
 <% end -%>
 
-<% if $::jetty::configuration['modules'].has_key?('http') -%>
+<% if $jetty::configuration['modules'].has_key?('http') -%>
 --module=http
-<% $::jetty::configuration['modules']['http'].each do |$k,$v| -%>
-<%= $k %>=<%= $v %>
+<% $jetty::configuration['modules']['http'].each do |k,v| -%>
+<%= k %>=<%= v %>
 <% end -%>
 <% end -%>
 
