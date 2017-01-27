@@ -15,7 +15,7 @@ class jetty::config inherits jetty {
 
   file { "${::jetty::base}/start.ini":
     ensure  => present,
-    content => epp('jetty/start.ini.epp'),
+    content => template('jetty/start.ini.erb'),
   }
 }
 
