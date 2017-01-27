@@ -17,9 +17,6 @@
     level: 'INFO'
     appenders:
       - Console
-      - File
-    file: '/opt/solr/logs/solr.log'
-    pattern: '%-4r [%t] %-5p %c %x - %m%n'
   jetty::configuration:
     modules:
       server:

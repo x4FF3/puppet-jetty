@@ -1,4 +1,4 @@
-# <%= @log %>
+<% if @log %>
 log4j.rootLogger=<%= @log.fetch('level', 'INFO') %>, <%= @log.fetch('appenders', ['Console']).join(',') %>
 #
 # Console appender
@@ -15,4 +15,4 @@ log4j.appender.File.layout=org.apache.log4j.PatternLayout
 log4j.appender.File.layout.ConversionPattern=<%= @log['pattern'] %>
 log4j.appender.File.File=<%= @log['file'] %>
 log4j.appender.File.append=true
-
+<% end %>
