@@ -1,15 +1,15 @@
-JETTY_HOME="<%= $::jetty::root %>/jetty"
-JETTY_BASE="<%= $::jetty::base %>"
-JETTY_USER="<%= $::jetty::user %>"
+JETTY_HOME="<%= @jetty::root %>/jetty"
+JETTY_BASE="<%= @jetty::base %>"
+JETTY_USER="<%= @jetty::user %>"
 JETTY_SHELL="/bin/sh"
-<% if $::jetty::jetty_arguments %>
-JETTY_ARGS="<%= $::jetty::jetty_arguments %>"
+<% if @jetty::jetty_arguments %>
+JETTY_ARGS="<%= @jetty::jetty_arguments %>"
 <% end %>
-TMPDIR="<%= $::jetty::root %>/jetty/tmp"
-<% if $::jetty::java %>
-JAVA="<%= $::jetty::java %>"
+TMPDIR="<%= @jetty::root %>/jetty/tmp"
+<% if @jetty::java %>
+JAVA="<%= @jetty::java %>"
 <% end %>
-<% if $::jetty::java_options %>
-JAVA_OPTIONS="<%= $::jetty::java_options %>"
+<% if @jetty::java_options %>
+JAVA_OPTIONS="<%= @jetty::java_options %>"
 <% end %>
 

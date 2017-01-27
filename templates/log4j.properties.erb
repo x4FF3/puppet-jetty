@@ -1,17 +1,17 @@
-log4j.rootLogger=<%= $::jetty::log['level'] %>, <%= $::jetty::log['appenders'].join(',') %>
+log4j.rootLogger=<%= @jetty::log['level'] %>, <%= @jetty::log['appenders'].join(',') %>
 #
 # Console appender
 #
 log4j.appender.Console=org.apache.log4j.ConsoleAppender
 log4j.appender.Console.layout=org.apache.log4j.PatternLayout
 log4j.appender.Console.target=System.err
-log4j.appender.Console.layout.ConversionPattern=<%= $::jetty::log['pattern'] %>
+log4j.appender.Console.layout.ConversionPattern=<%= @jetty::log['pattern'] %>
 #
 # Basic File appender
 #
 log4j.appender.Filer=org.apache.log4j.FileAppender
 log4j.appender.File.layout=org.apache.log4j.PatternLayout
-log4j.appender.File.layout.ConversionPattern=<%= $::jetty::log['pattern'] %>
-log4j.appender.File.File=<%= $::jetty::log['file'] %>
+log4j.appender.File.layout.ConversionPattern=<%= @jetty::log['pattern'] %>
+log4j.appender.File.File=<%= @jetty::log['file'] %>
 log4j.appender.File.append=true
 
