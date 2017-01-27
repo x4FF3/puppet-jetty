@@ -4,7 +4,7 @@
 <% if @configuration['modules'].has_key?('server') %>
 --module=server
 # <%= @configuration['modules'].fetch('server', {}) %>
-<% @configuration['modules'].fetch('server', {}).each do |k,v| %>
+<% @configuration['modules']['server'].each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
