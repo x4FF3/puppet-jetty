@@ -1,7 +1,7 @@
 #
 # <%= @configuration.inspect %>
 #
-<% unless @configuration -%>
+<% if @configuration -%>
 --module=home-base-warning
 
 <% if @configuration['modules'].has_key?('server') -%>
