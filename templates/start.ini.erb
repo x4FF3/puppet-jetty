@@ -14,7 +14,7 @@
 
 <% if @configuration['modules'].has_key?('deploy') -%>
 --module=deploy
-<% @configuration['modules'].fetch('deploy', {}).each do |k,v|
+<% @configuration['modules'].fetch('deploy', {}).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
@@ -42,7 +42,7 @@ jsp-impl=apache
 
 <% if @configuration['modules'].has_key?('http') -%>
 --module=http
-<% @configuration['modules'].fetch('http', {}).each do |k,v|
+<% @configuration['modules'].fetch('http', {}).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
 <% end -%>
