@@ -38,7 +38,7 @@ define jetty::instance(
 
   file { "${path}/resources/log4j.properties":
     ensure  => present,
-    source  => 'puppet:///modules/jetty/log4j.properties',
+    content => template('jetty/log4j.properties.erb'),
     require => File["${path}/resources"],
   }
 
