@@ -1,5 +1,5 @@
 # <%= @log %>
-log4j.rootLogger=<%= @log['level'] %>, <%= @log['appenders'].join(',') %>
+log4j.rootLogger=<%= @jetty::log.fetch('level', 'INFO') %>, <%= @jetty::log.fetch('appenders', ['Console']).join(',') %>
 #
 # Console appender
 #
@@ -10,7 +10,7 @@ log4j.appender.Console.layout.ConversionPattern=<%= @log['pattern'] %>
 #
 # Basic File appender
 #
-log4j.appender.Filer=org.apache.log4j.FileAppender
+log4j.appender.File=org.apache.log4j.FileAppender
 log4j.appender.File.layout=org.apache.log4j.PatternLayout
 log4j.appender.File.layout.ConversionPattern=<%= @log['pattern'] %>
 log4j.appender.File.File=<%= @log['file'] %>
