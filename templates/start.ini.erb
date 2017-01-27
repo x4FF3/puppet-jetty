@@ -1,51 +1,51 @@
-<% if @configuration -%>
+<% if @configuration %>
 --module=home-base-warning
 
-<% if @configuration['modules'].has_key?('server') -%>
-  --module=server
+<% if @configuration['modules'].has_key?('server') %>
+--module=server
 # <%= @configuration['modules'].fetch('server', {}) %>
-<% @configuration['modules'].fetch('server', {}).each do |k,v| -%>
+<% @configuration['modules'].fetch('server', {}).each do |k,v| %>
 <%= k %>=<%= v %>
-<% end -%>
-<% end -%>
+<% end %>
+<% end %>
 
-<% if @configuration['modules'].has_key?('logging') -%>
+<% if @configuration['modules'].has_key?('logging') %>
 --module=logging
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('deploy') -%>
+<% if @configuration['modules'].has_key?('deploy') %>
 --module=deploy
-<% @configuration['modules'].fetch('deploy', {}).each do |k,v| -%>
+<% @configuration['modules'].fetch('deploy', {}).each do |k,v| %>
 <%= k %>=<%= v %>
-<% end -%>
-<% end -%>
+<% end %>
+<% end %>
 
-<% if @configuration['modules'].has_key?('websocket') -%>
+<% if @configuration['modules'].has_key?('websocket') %>
 --module=websocket
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('ext') -%>
+<% if @configuration['modules'].has_key?('ext') %>
 --module=ext
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('resources') -%>
+<% if @configuration['modules'].has_key?('resources') %>
 --module=resources
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('jsp') -%>
+<% if @configuration['modules'].has_key?('jsp') %>
 --module=jsp
 jsp-impl=apache
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('jstl') -%>
+<% if @configuration['modules'].has_key?('jstl') %>
 --module=jstl
-<% end -%>
+<% end %>
 
-<% if @configuration['modules'].has_key?('http') -%>
+<% if @configuration['modules'].has_key?('http') %>
 --module=http
-<% @configuration['modules'].fetch('http', {}).each do |k,v| -%>
+<% @configuration['modules'].fetch('http', {}).each do |k,v| %>
 <%= k %>=<%= v %>
-<% end -%>
-<% end -%>
+<% end %>
+<% end %>
 
-<% end -%>
+<% end %>
