@@ -1,11 +1,9 @@
-#
-# <%= @configuration.inspect %>
-#
 <% if @configuration -%>
 --module=home-base-warning
 
 <% if @configuration['modules'].has_key?('server') -%>
---module=server
+  --module=server
+# <%= @configuration['modules'].fetch('server', {}) %>
 <% @configuration['modules'].fetch('server', {}).each do |k,v| -%>
 <%= k %>=<%= v %>
 <% end -%>
