@@ -1,4 +1,4 @@
-<% $::jetty::configuration.inspect -%>
+<%= $::jetty::configuration %>
 
 <% unless $::jetty::configuration =~ Undef { -%>
 
