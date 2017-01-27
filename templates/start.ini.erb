@@ -3,7 +3,9 @@
 
 <% if @configuration['modules'].has_key?('server') -%>
 --module=server
-<% @configuration['modules'].fetch('server', {}).each { |k,v| <%= k %>=<%= v %> } -%>
+<% @configuration['modules'].fetch('server', {}).each do |k,v| -%>
+<%= k %>=<%= v %>
+<% end -%>
 <% end -%>
 
 <% if @configuration['modules'].has_key?('logging') -%>
@@ -12,7 +14,9 @@
 
 <% if @configuration['modules'].has_key?('deploy') -%>
 --module=deploy
-<% @configuration['modules'].fetch('deploy', {}).each { |k,v| <%= k %>=<%= v %> } -%>
+<% @configuration['modules'].fetch('deploy', {}).each do |k,v|
+<%= k %>=<%= v %>
+<% end -%>
 <% end -%>
 
 <% if @configuration['modules'].has_key?('websocket') -%>
@@ -38,7 +42,9 @@ jsp-impl=apache
 
 <% if @configuration['modules'].has_key?('http') -%>
 --module=http
-<% @configuration['modules'].fetch('http', {}).each { |k,v| <%= k %>=<%= v %> } -%>
+<% @configuration['modules'].fetch('http', {}).each do |k,v|
+<%= k %>=<%= v %>
+<% end -%>
 <% end -%>
 
 <% end -%>
