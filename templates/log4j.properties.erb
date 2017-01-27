@@ -1,5 +1,5 @@
 # <%= @log %>
-log4j.rootLogger=<%= @jetty::log.fetch('level', 'INFO') %>, <%= @jetty::log.fetch('appenders', ['Console']).join(',') %>
+log4j.rootLogger=<%= @::log.fetch('level', 'INFO') %>, <%= @log.fetch('appenders', ['Console']).join(',') %>
 #
 # Console appender
 #
