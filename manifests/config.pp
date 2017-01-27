@@ -13,6 +13,11 @@ class jetty::config inherits jetty {
     content => epp('jetty/jetty-defaults.epp'),
   }
 
+  file { "${::jetty::base}/resources/log4j.properties":
+    ensure  => present,
+    content => epp('jetty/log4j.properties.epp'),
+  }
+
   file { "${::jetty::base}/start.ini":
     ensure  => present,
     content => template('jetty/start.ini.erb'),
