@@ -1,7 +1,5 @@
 <% if @configuration %>
-<%
-  @modules = @configuration.fetch('modules', {})
-%>
+<% @modules = @configuration.fetch('modules', {}) %>
 --module=home-base-warning
 
 <% if @modules.has_key?('server') %>
