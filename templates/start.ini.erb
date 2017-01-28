@@ -1,53 +1,13 @@
-<% if @configuration %>
-<% @modules = @configuration.fetch('modules', {}) %>
+<% if @configuration.keys.lenght > 0 %>
+<% 
+  _modules = @configuration.fetch('modules', {})
+  _options = @configuration.fetch('options', {})
+%>
 --module=home-base-warning
-
-<% if @modules.has_key?('server') %>
---module=server
-<% @modules.fetch('server', {}).each do |k,v| %>
+<% _modules.each do |module| %>
+--module=<%= module %>
+<% _options.fetch(module, {}).each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
-
-<% if @modules.has_key?('logging') %>
---module=logging
-<% end %>
-
-<% if @modules.has_key?('deploy') %>
---module=deploy
-<% @modules.fetch('deploy', {}).each do |k,v| %>
-<%= k %>=<%= v %>
-<% end %>
-<% end %>
-
-<% if @modules.has_key?('websocket') %>
---module=websocket
-<% end %>
-
-<% if @modules.has_key?('ext') %>
---module=ext
-<% end %>
-
-<% if @modules.has_key?('resources') %>
---module=resources
-<% end %>
-
-<% if @modules.has_key?('jsp') %>
---module=jsp
-<% @modules.fetch('jsp', {}).each do |k,v| %>
-<%= k %>=<%= v %>
-<% end %>
-<% end %>
-
-<% if @modules.has_key?('jstl') %>
---module=jstl
-<% end %>
-
-<% if @modules.has_key?('http') %>
---module=http
-<% @modules.fetch('http', {}).each do |k,v| %>
-<%= k %>=<%= v %>
-<% end %>
-<% end %>
-
 <% end %>
