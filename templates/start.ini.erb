@@ -1,13 +1,14 @@
-<% if @configuration.keys.lenght > 0 %>
-<% 
-  _modules = @configuration.fetch('modules', {})
-  _options = @configuration.fetch('options', {})
+<% if @configuration.keys.length > 0 %>
+<%-
+_modules = @configuration.fetch('modules', [])
+_options = @configuration.fetch('options', {})
 %>
 --module=home-base-warning
-<% _modules.each do |module| %>
---module=<%= module %>
-<% _options.fetch(module, {}).each do |k,v| %>
+<% _modules.each do |m| %>
+--module=<%= m %>
+<% _options.fetch(m, {}).each do |k,v| %>
 <%= k %>=<%= v %>
 <% end %>
 <% end %>
 <% end %>
+
