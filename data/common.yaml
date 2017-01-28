@@ -10,6 +10,9 @@ jetty::manage_user: true
 jetty::user: 'jetty'
 jetty::group: 'servers'
 jetty::service_ensure: 'running'
+jetty::java:
+jetty::java_arguments:
+jetty::jetty_arguments:
 jetty::configuration:
   modules:
     - server
