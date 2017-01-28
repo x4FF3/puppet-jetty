@@ -10,9 +10,9 @@
   jetty::mirror: 'http://central.maven.org/maven2'
   jetty::archive_type: 'tar.gz'
   jetty::checksum_type: 'sha1'
-  jetty::jetty_arguments:
-  jetty::java:
-  jetty::java_options:
+  jetty::jetty_arguments: ''
+  jetty::java: ''
+  jetty::java_options: ''
   jetty::logconfig:
     level: 'INFO'
     appenders:
@@ -22,9 +22,9 @@
       server:
         jetty.dump.start: true
         jetty.dump.stop: true
-      logging:
-      deploy:
-      http:
+      logging: {}
+      deploy: {}
+      http: {}
         jetty.port: 8081
-      jsp:
+      jsp: {}
 
