@@ -1,30 +1,31 @@
 ---
-  jetty::root: '/opt'
-  jetty::base: '/opt/web'
-  jetty::tmpdir: '/opt/jetty/tmp'
-  jetty::version: '9.2.21.v20170120'
-  jetty::service_ensure: 'running'
-  jetty::manage_user: true
-  jetty::user: 'jetty'
-  jetty::group: 'servers'
-  jetty::mirror: 'http://central.maven.org/maven2'
-  jetty::archive_type: 'tar.gz'
-  jetty::checksum_type: 'sha1'
-  jetty::jetty_arguments: ''
-  jetty::java: ''
-  jetty::java_options: ''
-  jetty::configuration:
-    modules:
-      server:
-        jetty.dump.start: true
-        jetty.dump.stop: true
-      logging: {}
-      deploy: {}
-      http: {}
-        jetty.port: 8081
-      jsp: {}
-  jetty::logconfig:
-    level: 'INFO'
-    appenders:
-      - 'Console'
-    target: 'System.out'
+jetty::root: '/opt'
+jetty::base: '/opt/web'
+jetty::tmpdir: '/opt/jetty/tmp'
+jetty::version: '9.2.21.v20170120'
+jetty::service_ensure: 'running'
+jetty::manage_user: true
+jetty::user: 'jetty'
+jetty::group: 'servers'
+jetty::mirror: 'http://central.maven.org/maven2'
+jetty::archive_type: 'tar.gz'
+jetty::checksum_type: 'sha1'
+jetty::jetty_arguments: ''
+jetty::java: ''
+jetty::java_options: ''
+jetty::configuration:
+  modules:
+    server:
+      jetty.dump.start: true
+      jetty.dump.stop: true
+    logging: {}
+    deploy: {}
+    http: {}
+      jetty.port: 8081
+    jsp: {}
+jetty::logconfig:
+  level: 'INFO'
+  appenders:
+    - 'Console'
+  target: 'System.out'
+
