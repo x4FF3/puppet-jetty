@@ -1,4 +1,4 @@
---- 
+---
 jetty::root: '/opt'
 jetty::base: '/opt/web'
 jetty::tmpdir: '/opt/jetty/tmp'
@@ -10,9 +10,6 @@ jetty::manage_user: true
 jetty::user: 'jetty'
 jetty::group: 'servers'
 jetty::service_ensure: 'running'
-jetty::jetty_arguments: ''
-jetty::java: ''
-jetty::java_options: ''
 jetty::configuration:
   modules:
     - server
