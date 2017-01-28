@@ -13,10 +13,6 @@
   jetty::jetty_arguments: ''
   jetty::java: ''
   jetty::java_options: ''
-  jetty::logconfig:
-    level: 'INFO'
-    appenders:
-      - Console
   jetty::configuration:
     modules:
       server:
@@ -27,4 +23,8 @@
       http: {}
         jetty.port: 8081
       jsp: {}
-
+  jetty::logconfig:
+    level: 'INFO'
+    appenders:
+      - 'Console'
+    target: 'System.out'
