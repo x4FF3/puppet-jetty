@@ -15,9 +15,7 @@ jetty::java: ''
 jetty::java_options: ''
 jetty::configuration:
   modules:
-    server:
-      jetty.dump.start: true
-      jetty.dump.stop: true
+    server: {}
     logging: {}
     deploy: {}
     http: {}
