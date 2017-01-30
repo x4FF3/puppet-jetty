@@ -1,4 +1,5 @@
-<% if @logconfig.keys.length > 0 %>
+# <% @logconfig.inspect %>
+<% if @logconfig && @logconfig.keys.length > 0 %>
 <%
 _default_level     = 'INFO'
 _default_appenders = ['Console']
