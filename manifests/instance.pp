@@ -1,8 +1,8 @@
 ##
 # 
 define jetty::instance(
-  String $path       = $title
-  Hash[String, Data] = $logconfig
+  String             $path      = $title
+  Hash[String, Data] $logconfig = { :level => 'INFO', :appenders = ['Console'] }
   ) {
 
   include '::jetty'
