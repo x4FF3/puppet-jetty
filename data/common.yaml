@@ -24,4 +24,8 @@ jetty::configuration:
     http:
       jetty.port: 8081
       jetty.host: 127.0.0.1
+jetty::logconfig:
+  level: 'INFO'
+  appenders:
+    - Console
 

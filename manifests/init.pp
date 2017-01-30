@@ -15,6 +15,7 @@ class jetty(
   Optional[String]          $java,
   Optional[String]          $java_options,
   Optional[Hash]            $configuration,
+  Optional[Hash]            $logconfig,
   ) {
 
   contain jetty::install

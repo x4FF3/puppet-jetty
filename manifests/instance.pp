@@ -46,6 +46,7 @@ define jetty::instance(
   file { "${path}/resources/log4j.properties":
     ensure  => present,
     content => template('jetty/log4j.properties.erb'),
+    mode    => '0740',
     require => File["${path}/resources"],
   }
 
@@ -53,6 +54,8 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-api/1.6.6/slf4j-api-1.6.6.jar',
+    user    => $::jetty::user,
+    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
   }
 
@@ -60,6 +63,8 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/1.6.6/slf4j-log4j12-1.6.6.jar',
+    user    => $::jetty::user,
+    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
   }
 
@@ -67,6 +72,8 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar',
+    user    => $::jetty::user,
+    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
   }
 }
