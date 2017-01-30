@@ -14,7 +14,6 @@ class jetty(
   Optional[String]          $jetty_arguments,
   Optional[String]          $java,
   Optional[String]          $java_options,
-  Optional[Hash]            $logconfig,
   Optional[Hash]            $configuration,
   ) {
 

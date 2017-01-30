@@ -1,7 +1,8 @@
 ##
 # 
 define jetty::instance(
-  String $path = $title
+  String $path       = $title
+  Hash[String, Data] = $logconfig
   ) {
 
   include '::jetty'
