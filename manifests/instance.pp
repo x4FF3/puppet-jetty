@@ -4,6 +4,8 @@ define jetty::instance(
   String $path = $title
   ) {
 
+  include '::jetty'
+
   File {
     owner => $::jetty::user,
     group => $::jetty::group,

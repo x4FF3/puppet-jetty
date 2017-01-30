@@ -26,3 +26,4 @@ class jetty(
   Class['::jetty::config'] ~>
   Class['::jetty::service']
 }
+
