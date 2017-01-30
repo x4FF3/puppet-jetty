@@ -29,9 +29,9 @@ A module to install Jetty and configure the service. This module has been highly
     mirror          => 'http://central.maven.org/maven2/',
     archive_type    => 'tar.gz',
     checksum_type   => 'sha1',
-    jetty_arguments => 'jetty.some_option=some_value'
+    jetty_arguments => 'jetty.option=value'
     java            => '/usr/java/jdk1.8.0_51/bin/java',
-    java_options    => '-Xms128M -Xmx1G -Djvm_key=jvm_value',
+    java_options    => '-Xms128M -Xmx1G -Dkey=value',
   }
 ```
 
@@ -49,12 +49,12 @@ This is a puppet 4 module, the recomendation is to use the binding capabilities 
     jetty::mirror: 'http://central.maven.org/maven2/'
     jetty::archive_type: 'tar.gz'
     jetty::checksum_type: 'sha1'
-    jetty_arguments: 'jetty.some_option=some_value'
+    jetty_arguments: 'jetty.option=value'
     jetty::java: '/usr/java/jdk1.8.0_51/bin/java'
-    jetty::java_options: '-Xms128M -Xmx1G -Djvm_key=jvm_value
+    jetty::java_options: '-Xms128M -Xmx1G -Dkey=value
 ```
 
-Then you only need to include the class in your profile class
+Then you only need to include the class in your profile class, this will create a fully operation base with log4j configured 
 
 ```puppet
   include '::jetty'
@@ -97,6 +97,7 @@ You must include an additional parameter in the manifest called configuration, w
           jetty.deploy.monitoredDirName: webapps
         http:
           jetty.port: 8081
+          jetty.host: 127.0.0.1
           http.timeout: 30000
           http.soLingerTime: -1
           http.selectors: 1
@@ -104,5 +105,11 @@ You must include an additional parameter in the manifest called configuration, w
           http.selectorPriorityDelta: 
           http.acceptorPriorityDelta: 0
         jsp:
+    jetty::logconfig:
+      appenders:
+        - Console
+        - File
+      loglevel: DEBUG
+      file: /var/log/my_jetty_instance.log
 ```
 
