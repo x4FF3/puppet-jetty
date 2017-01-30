@@ -72,7 +72,7 @@ define jetty::instance(
   }
 
   exec { 'Libraries permissions':
-    command => "chown ${::jetty::user}:${::jetty::group} ${path}/lib",
+    command => "chown -R ${::jetty::user}:${::jetty::group} ${path}/lib",
     path    => [ "/bin", "/usr/bin" ],
   }
 }
