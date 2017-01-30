@@ -69,7 +69,5 @@ class jetty::install inherits jetty {
   file { $_jetty_tmp:
     ensure => directory,
   }
-
-  ::jetty::instance { $::jetty::base: }
 }
 
