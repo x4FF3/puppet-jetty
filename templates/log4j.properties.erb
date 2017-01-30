@@ -6,7 +6,7 @@ _default_pattern   = '[%-5p] %m%n'
 _default_file      = 'jetty.log'
 
 _loglevel  = @logconfig.fetch('level', _default_level)
-_appenders = @logconfig.fetch('appenders', _default_appenders.join(','))
+_appenders = @logconfig.fetch('appenders', _default_appenders).join(',')
 _pattern   = @logconfig.fetch('pattern', _default_pattern)
 _target    = @logconfig.fetch('target', nil)
 _file      = @logconfig.fetch('file', _default_file)
