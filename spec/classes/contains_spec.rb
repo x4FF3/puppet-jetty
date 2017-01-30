@@ -26,7 +26,8 @@ describe 'jetty' do
       :jetty_arguments => 'jetty.bizarre_option=bizarre_value',
       :java            => '/usr/bin/java',
       :java_options    => '-Xms64 -Xmx128 -Djvm_option=jvm_value',
-      :configuration   => { 'modules' => {  } }
+      :configuration   => { 'modules' => {  } },
+      :logconfig       => { 'loglevel' => 'INFO', 'appenders' => ['Console'] }
       }
     end
 
