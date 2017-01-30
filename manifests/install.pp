@@ -15,15 +15,15 @@ class jetty::install inherits jetty {
   include '::archive'
 
   if $jetty::manage_user {
+    ensure_resource('group', $::jetty::group, {
+      ensure => present,
+    })
+
     ensure_resource('user', $::jetty::user, {
       shell  => '/bin/false',
       system => false,
       home   => $_jetty_tmp,
       gid    => $::jetty::group,
-    })
-
-    ensure_resource('group', $::jetty::group, {
-      ensure => present,
     })
   }
 
@@ -60,7 +60,7 @@ class jetty::install inherits jetty {
     target => $_jetty_sh,
     owner  => 'root',
     group  => 'root',
-    mode   => '0740',
+    mode   => '0750',
   } ->
   file { '/var/log/jetty':
     ensure => link,
@@ -69,9 +69,4 @@ class jetty::install inherits jetty {
   file { $_jetty_tmp:
     ensure => directory,
   }
-
-  ::jetty::instance { $::jetty::base:
-    logconfig => $::jetty::logconfig,
-  }
 }
-

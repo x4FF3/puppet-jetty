@@ -1,8 +1,10 @@
 ##
 # 
 define jetty::instance(
-  String $path      = $title,
-  Hash   $logconfig = {
+  String $path          = $title,
+  String $log4j_version = '1.7.2',
+  String $sf4j_version  = '1.6.6',
+  Hash   $logconfig     = {
     level     => 'INFO',
     appenders => ['Console'],
     target    => 'System.out'
@@ -50,24 +52,24 @@ define jetty::instance(
     require => File["${path}/resources"],
   }
 
-  archive { "${path}/lib/logging/slf4-api-1.6.6.jar":
+  archive { "${path}/lib/logging/slf4-api-${sf4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-api/1.6.6/slf4j-api-1.6.6.jar',
+    source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-api/${sf4j_version}/slf4j-api-${sf4j_version}.jar',
     require => File["${path}/lib/logging"],
   }
 
-  archive { "${path}/lib/logging/slf4-log4j2-1.6.6.jar":
+  archive { "${path}/lib/logging/slf4-log4j2-${sf4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/1.6.6/slf4j-log4j12-1.6.6.jar',
+    source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/${sf4j_version}/slf4j-log4j12-${sf4j_version}.jar',
     require => File["${path}/lib/logging"],
   }
 
-  archive { "${path}/lib/logging/log4j-1.2.17.jar":
+  archive { "${path}/lib/logging/log4j-${log4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => 'http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar',
+    source  => 'http://central.maven.org/maven2/log4j/log4j/${log4j_version}/log4j-${log4j_version}.jar',
     require => File["${path}/lib/logging"],
   }
 
@@ -76,4 +78,3 @@ define jetty::instance(
     path    => [ "/bin", "/usr/bin" ],
   }
 }
-
