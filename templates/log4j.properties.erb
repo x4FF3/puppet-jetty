@@ -3,22 +3,21 @@
 _default_level     = 'INFO'
 _default_appenders = ['Console']
 _default_pattern   = '[%-5p] %m%n'
-_default_target    = 'System.out'
 _default_file      = 'jetty.log'
 
-_loglevel  = @logconfig.fetch(:level, _default_level)
-_appenders = @logconfig.fetch(:appenders, _default_appenders.join(','))
-_pattern   = @logconfig.fetch(:pattern, _default_pattern)
-_target    = @logconfig.fetch(:target, _default_target)
-_file      = @logconfig.fetch(:file, _default_file)
+_loglevel  = @logconfig.fetch(:level,     @logconfig.fetch('level', _default_level))
+_appenders = @logconfig.fetch(:appenders, @logconfig.fetch('appenders', _default_appenders.join(',')))
+_pattern   = @logconfig.fetch(:pattern,   @logconfig.fetch('pattern', _default_pattern))
+_target    = @logconfig.fetch(:target,    @logconfig.fetch('target', nil))
+_file      = @logconfig.fetch(:file,      @logconfig.fetch('file', _default_file))
 %>
 log4j.rootLogger=<%= _loglevel %>, <%= _appenders %>
-
 log4j.appender.Console=org.apache.log4j.ConsoleAppender
 log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+<% if _target %>
 log4j.appender.Console.target=<%= _target %>
+<% end %>
 log4j.appender.Console.layout.ConversionPattern=<%= _pattern %>
-
 log4j.appender.File=org.apache.log4j.FileAppender
 log4j.appender.File.layout=org.apache.log4j.PatternLayout
 log4j.appender.File.layout.ConversionPattern=<%= _pattern %>
