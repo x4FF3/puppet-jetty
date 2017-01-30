@@ -54,8 +54,6 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-api/1.6.6/slf4j-api-1.6.6.jar',
-    user    => $::jetty::user,
-    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
   }
 
@@ -63,8 +61,6 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/1.6.6/slf4j-log4j12-1.6.6.jar',
-    user    => $::jetty::user,
-    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
   }
 
@@ -72,9 +68,12 @@ define jetty::instance(
     ensure  => present,
     extract => false,
     source  => 'http://central.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar',
-    user    => $::jetty::user,
-    group   => $::jetty::group,
     require => File["${path}/lib/logging"],
+  }
+
+  exec { 'Libraries permissions':
+    command => "chown ${::jetty::user}:${::jetty::group} ${path}/lib",
+    path    => [ "/bin", "/usr/bin" ],
   }
 }
 
