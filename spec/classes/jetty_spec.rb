@@ -23,10 +23,11 @@ describe 'jetty' do
       :mirror          => 'http://central.maven.org/maven2',
       :archive_type    => 'tar.gz',
       :checksum_type   => 'sha1',
-      :jetty_arguments => 'jetty.bizarre_option=bizarre_value',
+      :jetty_arguments => 'jetty.option=value',
       :java            => '/usr/bin/java',
-      :java_options    => '-Xms64 -Xmx128 -Djvm_option=jvm_value',
-      :configuration   => { 'modules' =>{  } }
+      :java_options    => '-Xms64 -Xmx128 -Doption=value',
+      :configuration   => { 'modules' =>{  } },
+      :logconfig       => { 'loglevel' => 'INFO', 'appenders' => ['Console'] }
       }
     end
 
@@ -35,6 +36,8 @@ describe 'jetty' do
     end
 
     it do
+      is_expected.to contain_group('jettygroup')
+
       is_expected.to contain_user('jettyuser').with({
         'system' => false,
         'shell'  => '/bin/false',
@@ -73,9 +76,49 @@ describe 'jetty' do
         'owner'  => 'jettyuser',
         'group'  => 'jettygroup',
       })
-    end
 
-    it do
+      is_expected.to contain_file('/opt/web/lib').with({
+        'ensure' => 'directory',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/lib/logging').with({
+        'ensure' => 'directory',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/resources').with({
+        'ensure' => 'directory',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/resources/log4j.properties').with({
+        'ensure' => 'present',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/resources/jetty-logging.properties').with({
+        'ensure' => 'present',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/modules').with({
+        'ensure' => 'directory',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
+      is_expected.to contain_file('/opt/web/modules/logging.conf').with({
+        'ensure' => 'present',
+        'owner'  => 'jettyuser',
+        'group'  => 'jettygroup',
+      })
+
       is_expected.to contain_file('/opt/web/webapps').with({
         'ensure' => 'directory',
         'owner'  => 'jettyuser',
@@ -99,10 +142,10 @@ describe 'jetty' do
         .with_content(/^JETTY_BASE="\/opt\/web"$/) \
         .with_content(/^JETTY_USER="jettyuser"$/) \
         .with_content(/^JETTY_SHELL="\/bin\/sh"$/) \
-        .with_content(/^JETTY_ARGS="jetty.bizarre_option=bizarre_value"$/) \
+        .with_content(/^JETTY_ARGS="jetty.option=value"$/) \
         .with_content(/^TMPDIR="\/opt\/jetty\/tmp"$/) \
         .with_content(/^JAVA="\/usr\/bin\/java"$/) \
-        .with_content(/^JAVA_OPTIONS="-Xms64 -Xmx128 -Djvm_option=jvm_value"$/)
+        .with_content(/^JAVA_OPTIONS="-Xms64 -Xmx128 -Doption=value"$/)
     end
 
     it do
