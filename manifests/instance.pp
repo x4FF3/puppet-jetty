@@ -2,7 +2,7 @@
 # 
 define jetty::instance(
   String $path          = $title,
-  String $log4j_version = '1.2.9',
+  String $log4j_version = '1.2.16',
   String $sf4j_version  = '1.6.6',
   Hash   $logconfig     = {
     level     => 'INFO',
