@@ -1,7 +1,7 @@
 ##
-# 
+#
 define jetty::instance(
-  String $path          = $title,
+  String $path,
   String $log4j_version = '1.2.16',
   String $sf4j_version  = '1.6.6',
   Hash   $logconfig     = {
@@ -55,21 +55,21 @@ define jetty::instance(
   archive { "${path}/lib/logging/slf4-api-${sf4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => "http://central.maven.org/maven2/org/slf4j/slf4j-api/${sf4j_version}/slf4j-api-${sf4j_version}.jar",
+    source  => "${::jetty::mirror}/org/slf4j/slf4j-api/${sf4j_version}/slf4j-api-${sf4j_version}.jar",
     require => File["${path}/lib/logging"],
   }
 
   archive { "${path}/lib/logging/slf4-log4j2-${sf4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => "http://central.maven.org/maven2/org/slf4j/slf4j-log4j12/${sf4j_version}/slf4j-log4j12-${sf4j_version}.jar",
+    source  => "${::jetty::mirror}/org/slf4j/slf4j-log4j12/${sf4j_version}/slf4j-log4j12-${sf4j_version}.jar",
     require => File["${path}/lib/logging"],
   }
 
   archive { "${path}/lib/logging/log4j-${log4j_version}.jar":
     ensure  => present,
     extract => false,
-    source  => "http://central.maven.org/maven2/log4j/log4j/${log4j_version}/log4j-${log4j_version}.jar",
+    source  => "${::jetty::mirror}/log4j/log4j/${log4j_version}/log4j-${log4j_version}.jar",
     require => File["${path}/lib/logging"],
   }
 

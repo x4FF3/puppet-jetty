@@ -6,12 +6,26 @@ class jetty::config inherits jetty {
     owner => $jetty::user,
     group => $jetty::group,
   }
-
-  file { '/etc/default/jetty':
-    ensure  => present,
-    mode    => '0740',
-    content => template('jetty/jetty-defaults.erb'),
+  case $::facts['osfamily'] {
+    'Debian': {
+      # code
+    }
+    'RedHat': {
+      File {
+        owner => $jetty::user,
+        group => $jetty::group,
+      }
+      file { '/etc/default/jetty':
+        ensure  => present,
+        mode    => '0740',
+        content => template('jetty/jetty-defaults.erb'),
+      }
+    }
+    default: {
+      # code
+    }
   }
+
 
   file { "${::jetty::base}/start.ini":
     ensure  => present,
